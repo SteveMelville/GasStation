@@ -3,6 +3,7 @@ package teamNorth;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        GasDriver driver = new GasDriver();
+        driver.run();
     }
 }
