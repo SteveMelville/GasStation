@@ -1,22 +1,25 @@
 package teamNorth;
 
 public class Station {
-    Pump pump1;
-    Pump pump2;
-    Pump pump3;
+    int size = 9;
+    Pump [] pumps = new Pump[size];
     Tank tank85;
     Tank tank89;
 
     public Station(){
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
-        pump1 = new Pump();
-        pump2 = new Pump();
-        pump3 = new Pump();
+        for(int i = 0; i < size; i++){
+            pumps[i] = new Pump(i);
+        }
     }
 
-    public double checkFuelLevel(){
-
+    public double checkFuelLevel(String name){
+        if (name == "85"){
+            return tank85.getFuelAmount();
+        } else if (name == "85"){
+            return tank85.getFuelAmount();
+        }
         return 0;
     }
 
