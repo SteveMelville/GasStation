@@ -20,11 +20,11 @@ public class Station {
         return 0;
     }
 
-    public void fillTank(String Type){
+    public void fillTank(String name){
         
     }
 
-    public void pumpFuel(double amt, Pump whichPump, String Type){
+    public void pumpFuel(double amt, Pump whichPump, String name){
 
     }
 }

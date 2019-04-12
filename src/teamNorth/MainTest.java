@@ -12,4 +12,17 @@ class MainTest {
         assertEquals(true, driver.run());
     }
 
+    @Test
+    void onlyProperTanksCreatable(){
+        assertEquals(null, Tank.getTank("87"));
+        assertNotNull(Tank.getTank("85"));
+        assertNotNull(Tank.getTank("89"));
+    }
+
+    @Test
+    void correctAmountOfFuelPumped(){
+        Pump pump = new Pump();
+        assertEquals(12.1,pump.pumpFuel(12.1,"85"));
+    }
+
 }
