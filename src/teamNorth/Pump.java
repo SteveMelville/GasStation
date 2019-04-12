@@ -1,15 +1,27 @@
 package teamNorth;
 
 public class Pump {
-    Tank tank85;
-    Tank tank89;
+    private Tank tank85;
+    private Tank tank89;
+    private int id;
+    private double amountPumped;
 
-    Pump(){
+    Pump(int id){
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
+        this.id = id;
+        amountPumped = 0;
     }
 
-    double pumpFuel(double amount, String type){
+    public double pumpFuel(double amount, String name){
         return amount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getAmountPumped() {
+        return amountPumped;
     }
 }
