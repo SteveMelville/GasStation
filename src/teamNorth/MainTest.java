@@ -21,7 +21,7 @@ class MainTest {
 
     @Test
     void correctAmountOfFuelPumped(){
-        Pump pump = new Pump();
+        Pump pump = new Pump(1);
         assertEquals(12.1,pump.pumpFuel(12.1,"85"));
     }
 
