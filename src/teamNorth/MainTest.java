@@ -37,7 +37,8 @@ class MainTest {
         Tank tank = Tank.getTank("85");
         tank.fuelRequest(5000);
         assertEquals(tank.getFuelAmount(), 5000);
-        
+
+        //amount should update
         station.TankReorder("85");
         assertEquals(tank.getFuelAmount(), 10000);                    
     }
@@ -48,7 +49,8 @@ class MainTest {
         Tank tank = Tank.getTank("85");
         tank.fuelRequest(5000);
         assertEquals(tank.getFuelAmount(), 5000);
-        
+
+        //amount should be the same
         station.TankReorder("87");
         assertEquals(tank.getFuelAmount(), 5000);                    
     }
