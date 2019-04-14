@@ -6,6 +6,7 @@ public class Pump {
     private int id;
     private double amountPumped;
     private double pumpSpeed;
+    private Car car;
 
     Pump(int id){
         tank85 = Tank.getTank("85");
@@ -13,22 +14,33 @@ public class Pump {
         this.id = id;
         amountPumped = 0;
         pumpSpeed = 0.1;
+        car = null;
     }
 
     public double pumpFuel(double amount, String name){
-        double availableFuel = 0, availableFuel2 = 0;
+        double availableFuel = 0;
+        amountPumped = 0;
+        Tank tank = null;
         switch (name){
-            case "85":  availableFuel = tank85.requestFuel(amount);
+            case "85":  availableFuel = tank85.getFuelAmount();
                         if(availableFuel < amount) return HandleEmptyTank(tank85);
+                        else tank = tank85;
                         break;
-            case "89":  availableFuel = tank89.requestFuel(amount);
+            case "89":  availableFuel = tank89.getFuelAmount();
                         if(availableFuel < amount) return HandleEmptyTank(tank89);
+                        else tank = tank89;
                         break;
-            case "87":  availableFuel = tank85.requestFuel(amount / 2);
+            case "87":  availableFuel = tank85.getFuelAmount();
                         if(availableFuel < amount / 2) return HandleEmptyTank(tank85);
-                        availableFuel2 = tank89.requestFuel(amount / 2);
-                        if(availableFuel2 < amount / 2) return HandleEmptyTank(tank89);
+                        availableFuel = tank89.getFuelAmount();
+                        if(availableFuel < amount / 2) return HandleEmptyTank(tank89);
                         break;
+        }
+        if(tank != null)
+            tank.fuelRequest(amount);
+        else{
+            pumpFuel(amount / 2, "85");
+            pumpFuel(amount / 2, "89");
         }
 
         while(amountPumped < amount){
@@ -53,5 +65,13 @@ public class Pump {
 
     public void setPumpSpeed(double pumpSpeed) {
         this.pumpSpeed = pumpSpeed;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 }
