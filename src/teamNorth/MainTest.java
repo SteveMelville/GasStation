@@ -38,7 +38,7 @@ class MainTest {
         tank.fuelRequest(5000);
         assertEquals(tank.getFuelAmount(), 5000);
         
-        station.TankReorder("85);
+        station.TankReorder("85");
         assertEquals(tank.getFuelAmount(), 10000);                    
     }
                             
