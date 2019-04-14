@@ -30,5 +30,27 @@ class MainTest {
         Pump pump = new Pump(1);
         Tank tank = Tank.getTank("85");
     }
+    
+    @Test
+    void TestTankReorder(){
+        Station station = new Station();
+        Tank tank = Tank.getTank("85");
+        tank.fuelRequest(5000);
+        assertEquals(tank.getFuelAmount(), 5000);
+        
+        station.TankReorder("85);
+        assertEquals(tank.getFuelAmount(), 10000);                    
+    }
+                            
+    @Test
+    void TestTankReorderInvalidTank(){
+        Station station = new Station();
+        Tank tank = Tank.getTank("85");
+        tank.fuelRequest(5000);
+        assertEquals(tank.getFuelAmount(), 5000);
+        
+        station.TankReorder("87");
+        assertEquals(tank.getFuelAmount(), 5000);                    
+    }
 
 }
