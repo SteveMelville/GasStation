@@ -30,4 +30,16 @@ public class Station {
             tank89.refuelTank(10000-tank89.getFuelAmount());
         }
     }
+
+    public void carArrives() {
+        Car nextCar = new Car(1);
+
+        for(int i = 0; i < size; i++){
+            if(pumps[i].isEmpty()) pumps[i].setCar(nextCar);
+        }
+    }
+
+    public void carLeaves(int i){
+        if(i >= 0 && i < size) pumps[i].setCar(null);
+    }
 }

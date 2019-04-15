@@ -74,4 +74,9 @@ public class Pump {
     public void setCar(Car car) {
         this.car = car;
     }
+
+    public Boolean isEmpty(){
+        if(car == null) { return true; }
+        else { return false; }
+    }
 }
