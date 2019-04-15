@@ -1,4 +1,5 @@
 package teamNorth;
+import java.util.*;
 
 public class Station {
     int size = 9;
@@ -32,7 +33,9 @@ public class Station {
     }
 
     public void carArrives() {
-        Car nextCar = new Car(1);
+        Scanner fuelRequest = new Scanner(System.in);
+
+        Car nextCar = new Car(fuelRequest.nextFloat());
 
         for(int i = 0; i < size; i++){
             if(pumps[i].isEmpty()) pumps[i].setCar(nextCar);
