@@ -4,9 +4,10 @@ public class Tank {
     static Tank tank85;
     static Tank tank89;
     double fuelAmount;
+    static double maxFuel = 10000.0;
     String name;
     private Tank(){
-        fuelAmount = 10000.0;
+        fuelAmount = maxFuel;
         name = "Tank";
     }
 
@@ -41,10 +42,10 @@ public class Tank {
         }
     }
     public void refuelTank(double fuel){
-        if((fuelAmount + fuel) <= 10000) {
+        if((fuelAmount + fuel) <= maxFuel) {
             fuelAmount = fuelAmount + fuel;
         } else{
-            double fuelExcess = (fuelAmount + fuel) - 10000;
+            double fuelExcess = (fuelAmount + fuel) - maxFuel;
             fuelAmount = (fuelAmount + fuel) - fuelExcess;
         }
     }
