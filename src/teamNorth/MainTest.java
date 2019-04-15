@@ -47,6 +47,7 @@ class MainTest {
     void TestTankReorder(){
         Station station = new Station();
         Tank tank = Tank.getTank("85");
+        tank.refuelTank(10000);
         tank.fuelRequest(5000);
         assertEquals(tank.getFuelAmount(), 5000);
 
@@ -59,6 +60,7 @@ class MainTest {
     void TestTankReorderInvalidTank(){
         Station station = new Station();
         Tank tank = Tank.getTank("85");
+        tank.refuelTank(10000);
         tank.fuelRequest(5000);
         assertEquals(tank.getFuelAmount(), 5000);
 
@@ -70,6 +72,7 @@ class MainTest {
     @Test
     void TankRefill(){
         Tank tank = Tank.getTank("85");
+        tank.refuelTank(10000);
         tank.fuelRequest(10000);
 
         tank.refuelTank(20);
@@ -80,6 +83,7 @@ class MainTest {
     @Test
     void TankFuelRequest(){
         Tank tank = Tank.getTank("85");
+        tank.refuelTank(10000);
         assertEquals(10000, tank.fuelRequest(10000));
 
         tank.refuelTank(20);
