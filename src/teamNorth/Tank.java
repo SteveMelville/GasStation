@@ -28,14 +28,25 @@ public class Tank {
         if (fuelAmount == 0) {
             return 0;
         } else {
-
-            fuelAmount = fuelAmount - fuelNeeded;
+            if(fuelNeeded > fuelAmount){
+                fuel = fuelAmount;
+                fuelAmount -=fuelAmount;
+            }
+            else {
+                fuel = fuelNeeded;
+                fuelAmount = fuelAmount - fuelNeeded;
+            }
 
             return fuel;
         }
     }
     public void refuelTank(double fuel){
-        fuelAmount = fuelAmount + fuel;
+        if((fuelAmount + fuel) <= 10000) {
+            fuelAmount = fuelAmount + fuel;
+        } else{
+            double fuelExcess = (fuelAmount + fuel) - 10000;
+            fuelAmount = (fuelAmount + fuel) - fuelExcess;
+        }
     }
 
     public double getFuelAmount(){

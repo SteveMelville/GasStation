@@ -4,6 +4,7 @@
     <list default="true" id="1b42e887-2eae-451b-b47f-30f5ca43f70d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GasStation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GasStation.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Car.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GasStation/teamNorth/GasDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GasStation/teamNorth/GasDriver.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Main.class" afterDir="false" />
@@ -12,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Station.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Station.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Tank.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GasStation/teamNorth/Tank.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/teamNorth/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teamNorth/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/teamNorth/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/teamNorth/Tank.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +45,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/teamNorth/Pump.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-476">
+            <state relative-caret-position="34">
               <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
@@ -52,14 +54,30 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/teamNorth/MainTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+            <state relative-caret-position="-572">
+              <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/teamNorth/Tank.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+              <folding>
+                <element signature="e#1141#1142#0" expanded="true" />
+                <element signature="e#1174#1175#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/teamNorth/Station.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-66">
               <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -76,6 +94,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/teamNorth/MainTest.java" />
+        <option value="$PROJECT_DIR$/src/teamNorth/Tank.java" />
       </list>
     </option>
   </component>
@@ -102,11 +121,6 @@
             <path>
               <item name="GasStation" type="b2602c69:ProjectViewProjectNode" />
               <item name="GasStation" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GasStation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GasStation" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -122,7 +136,12 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555287110595" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555294644839" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -136,8 +155,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MainTest.pumpFuelEmptyTank87">
-    <configuration name="MainTest.HandleEmptyPumpWorks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MainTest.TankFuelRequest">
+    <configuration name="MainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GasStation" />
       <extension name="coverage">
         <pattern>
@@ -147,7 +166,38 @@
       </extension>
       <option name="PACKAGE_NAME" value="teamNorth" />
       <option name="MAIN_CLASS_NAME" value="teamNorth.MainTest" />
-      <option name="METHOD_NAME" value="HandleEmptyPumpWorks" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.TankFuelRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GasStation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="teamNorth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="teamNorth" />
+      <option name="MAIN_CLASS_NAME" value="teamNorth.MainTest" />
+      <option name="METHOD_NAME" value="TankFuelRequest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.TankRefill" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GasStation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="teamNorth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="teamNorth" />
+      <option name="MAIN_CLASS_NAME" value="teamNorth.MainTest" />
+      <option name="METHOD_NAME" value="TankRefill" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,7 +219,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainTest.TestTankReorderInvalidTank" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MainTest.maxTenThousand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GasStation" />
       <extension name="coverage">
         <pattern>
@@ -179,39 +229,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="teamNorth" />
       <option name="MAIN_CLASS_NAME" value="teamNorth.MainTest" />
-      <option name="METHOD_NAME" value="TestTankReorderInvalidTank" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainTest.pumpFuelEmptyTank87" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="GasStation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="teamNorth.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="teamNorth" />
-      <option name="MAIN_CLASS_NAME" value="teamNorth.MainTest" />
-      <option name="METHOD_NAME" value="pumpFuelEmptyTank87" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainTest.pumpFuelTank87" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="GasStation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="teamNorth.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="teamNorth" />
-      <option name="MAIN_CLASS_NAME" value="teamNorth.MainTest" />
-      <option name="METHOD_NAME" value="pumpFuelTank87" />
+      <option name="METHOD_NAME" value="maxTenThousand" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -219,11 +237,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MainTest.pumpFuelEmptyTank87" />
-        <item itemvalue="JUnit.MainTest.pumpFuelTank87" />
-        <item itemvalue="JUnit.MainTest.HandleEmptyPumpWorks" />
+        <item itemvalue="JUnit.MainTest.TankFuelRequest" />
         <item itemvalue="JUnit.MainTest.TestTankReorder" />
-        <item itemvalue="JUnit.MainTest.TestTankReorderInvalidTank" />
+        <item itemvalue="JUnit.MainTest" />
+        <item itemvalue="JUnit.MainTest.maxTenThousand" />
+        <item itemvalue="JUnit.MainTest.TankRefill" />
       </list>
     </recent_temporary>
   </component>
@@ -241,33 +259,41 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MainTest_TestTankReorderInvalidTank - 2019.04.14 at 17h 12m 47s.xml">
-      <configuration name="MainTest.TestTankReorderInvalidTank" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MainTest_TestTankReorder - 2019.04.14 at 17h 13m 09s.xml">
-      <configuration name="MainTest.TestTankReorder" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MainTest_TestTankReorder - 2019.04.14 at 17h 15m 01s.xml">
-      <configuration name="MainTest.TestTankReorder" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MainTest_HandleEmptyPumpWorks - 2019.04.14 at 18h 05m 09s.xml">
-      <configuration name="MainTest.HandleEmptyPumpWorks" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MainTest_pumpFuelTank87 - 2019.04.14 at 18h 08m 08s.xml">
-      <configuration name="MainTest.pumpFuelTank87" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MainTest_pumpFuelTank87 - 2019.04.14 at 18h 08m 35s.xml">
-      <configuration name="MainTest.pumpFuelTank87" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="MainTest_pumpFuelEmptyTank87 - 2019.04.14 at 18h 10m 28s.xml">
       <configuration name="MainTest.pumpFuelEmptyTank87" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MainTest_TankRefill - 2019.04.14 at 19h 59m 23s.xml">
+      <configuration name="MainTest.TankRefill" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_TankFuelRequest - 2019.04.14 at 20h 01m 36s.xml">
+      <configuration name="MainTest.TankFuelRequest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_TankFuelRequest - 2019.04.14 at 20h 05m 02s.xml">
+      <configuration name="MainTest.TankFuelRequest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_TankFuelRequest - 2019.04.14 at 20h 06m 19s.xml">
+      <configuration name="MainTest.TankFuelRequest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_maxTenThousand - 2019.04.14 at 20h 09m 12s.xml">
+      <configuration name="MainTest.maxTenThousand" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_maxTenThousand - 2019.04.14 at 20h 13m 23s.xml">
+      <configuration name="MainTest.maxTenThousand" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest - 2019.04.14 at 20h 14m 02s.xml">
+      <configuration name="MainTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_TestTankReorder - 2019.04.14 at 20h 15m 23s.xml">
+      <configuration name="MainTest.TestTankReorder" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_TankFuelRequest - 2019.04.14 at 20h 15m 38s.xml">
+      <configuration name="MainTest.TankFuelRequest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25704697" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -276,7 +302,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32733223" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -348,13 +374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/teamNorth/Pump.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-476">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/teamNorth/GasDriver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -362,17 +381,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/teamNorth/Tank.java">
+    <entry file="file://$PROJECT_DIR$/src/teamNorth/Pump.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/teamNorth/Station.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-66">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/teamNorth/Tank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+          <folding>
+            <element signature="e#1141#1142#0" expanded="true" />
+            <element signature="e#1174#1175#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/teamNorth/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+        <state relative-caret-position="-572">
+          <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

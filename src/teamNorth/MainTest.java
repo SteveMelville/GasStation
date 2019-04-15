@@ -67,4 +67,33 @@ class MainTest {
         assertEquals(tank.getFuelAmount(), 5000);                    
     }
 
+    @Test
+    void TankRefill(){
+        Tank tank = Tank.getTank("85");
+        tank.fuelRequest(10000);
+
+        tank.refuelTank(20);
+        assertEquals(20,tank.getFuelAmount());
+
+    }
+
+    @Test
+    void TankFuelRequest(){
+        Tank tank = Tank.getTank("85");
+        assertEquals(10000, tank.fuelRequest(10000));
+
+        tank.refuelTank(20);
+
+        assertEquals(20, tank.fuelRequest(30));
+    }
+
+    @Test
+    void maxTenThousand(){
+        Tank tank = Tank.getTank("85");
+        tank.fuelRequest(10000);
+
+        tank.refuelTank(12000);
+        assertEquals(10000, tank.getFuelAmount());
+    }
+
 }
