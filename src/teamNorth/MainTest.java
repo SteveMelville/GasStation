@@ -26,9 +26,21 @@ class MainTest {
     }
 
     @Test
+    void pumpFuelTank87(){
+        Pump pump = new Pump(1);
+        assertEquals(12, pump.pumpFuel(12, "87"));
+    }
+
+    @Test
     void HandleEmptyPumpWorks(){
         Pump pump = new Pump(1);
-        Tank tank = Tank.getTank("85");
+        assertEquals(-1, pump.pumpFuel(1000000,"85"));
+    }
+
+    @Test
+    void pumpFuelEmptyTank87(){
+        Pump pump = new Pump(1);
+        assertEquals(-1, pump.pumpFuel(1000000, "87"));
     }
     
     @Test
