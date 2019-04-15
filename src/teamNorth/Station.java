@@ -33,9 +33,8 @@ public class Station {
     }
 
     public void carArrives() {
-        Scanner fuelRequest = new Scanner(System.in);
 
-        Car nextCar = new Car(fuelRequest.nextFloat());
+        Car nextCar = new Car(Math.random()%Car.MaxTankSize);
 
         for(int i = 0; i < size; i++){
             if(pumps[i].isEmpty()) pumps[i].setCar(nextCar);
