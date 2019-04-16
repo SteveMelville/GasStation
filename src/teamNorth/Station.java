@@ -12,11 +12,12 @@ public class Station {
     Semaphore [] doWork = new Semaphore[size];
     Semaphore [] workDone = new Semaphore[size];
     boolean working;
+    double orderFuelLevel;
 
     public Station(){
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
-
+        orderFuelLevel = 400;
         working = true;
 
         for(int i = 0; i < size; i++){
@@ -55,6 +56,13 @@ public class Station {
                     workDone[i].acquire();
                     if (count == 0) System.out.println("Pump " + pumps[i].getId() + ": Amount Pumped: " + pumps[i].getAmountPumped());
                 }
+
+                if(tank85.getFuelAmount() < orderFuelLevel){
+                    TankReorder("85");
+                }
+                if(tank89.getFuelAmount() < orderFuelLevel){
+                    TankReorder("89");
+                }
                 count++;
                 if(count > 1){
                     count = 0;
@@ -80,7 +88,6 @@ public class Station {
     }
 
     public void carArrives() {
-
         Car nextCar = new Car(Math.random()%Car.MaxTankSize);
 
         for(int i = 0; i < size; i++){

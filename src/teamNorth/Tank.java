@@ -4,7 +4,7 @@ public class Tank {
     static Tank tank85;
     static Tank tank89;
     double fuelAmount;
-    static double maxFuel = 10000.0;
+    static double maxFuel = 500.0;
     String name;
     private Tank(){
         fuelAmount = maxFuel;
