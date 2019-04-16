@@ -32,9 +32,9 @@ public class Station {
         }
     }
 
-    public void carArrives() {
+    public void carArrives(ICar nextCar) {
 
-        Car nextCar = new Car(Math.random()%Car.MaxTankSize);
+        //Car nextCar = new Car(Math.random()%Car.MaxTankSize);
 
         for(int i = 0; i < size; i++){
             if(pumps[i].isEmpty()) pumps[i].setCar(nextCar);

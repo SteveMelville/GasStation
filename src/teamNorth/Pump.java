@@ -6,7 +6,7 @@ public class Pump {
     private int id;
     private double amountPumped;
     private double pumpSpeed;
-    private Car car;
+    private ICar car;
 
     Pump(int id){
         tank85 = Tank.getTank("85");
@@ -67,11 +67,11 @@ public class Pump {
         this.pumpSpeed = pumpSpeed;
     }
 
-    public Car getCar() {
+    public ICar getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(ICar car) {
         this.car = car;
     }
 
