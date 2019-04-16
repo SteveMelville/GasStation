@@ -1,17 +1,29 @@
 package teamNorth;
 import java.util.*;
+import java.util.concurrent.Semaphore;
 
 public class Station {
     int size = 9;
     Pump [] pumps = new Pump[size];
     Tank tank85;
     Tank tank89;
+    Semaphore [] doWork = new Semaphore[size];
+    Semaphore [] workDone = new Semaphore[size];
+    boolean working;
 
     public Station(){
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
+
+        working = true;
+
         for(int i = 0; i < size; i++){
-            pumps[i] = new Pump(i);
+            doWork[i] = new Semaphore(0);
+            workDone[i] = new Semaphore(0);
+        }
+
+        for(int i = 0; i < size; i++){
+            pumps[i] = new Pump(i, doWork[i], workDone[i]);
         }
     }
 
@@ -22,6 +34,34 @@ public class Station {
             return tank89.getFuelAmount();
         }
         return 0;
+    }
+
+    public boolean runStation(){
+        try {
+            for(int i = 0; i < size; i++){
+                pumps[i].start();
+            }
+            int count = 0;
+            while(working){
+
+                for(int i = 0; i < size; i++){
+                    if(pumps[i].isEmpty()) pumps[i].setCar(new Car(5));
+                    doWork[i].release();
+                }
+
+                for(int i = 0; i < size; i++){
+                    workDone[i].acquire();
+                    if (count == 0) System.out.println("Pump " + pumps[i].getId() + ": Amount Pumped: " + pumps[i].getAmountPumped());
+                }
+                count++;
+                if(count > 100){
+                    count = 0;
+                }
+            }
+        } catch(Exception e){
+            return false;
+        }
+        return true;
     }
     
     public void TankReorder(String name){
