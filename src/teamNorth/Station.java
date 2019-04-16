@@ -2,6 +2,8 @@ package teamNorth;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
+import static java.lang.Thread.sleep;
+
 public class Station {
     int size = 9;
     Pump [] pumps = new Pump[size];
@@ -41,11 +43,11 @@ public class Station {
             for(int i = 0; i < size; i++){
                 pumps[i].start();
             }
-            int count = 0;
+            int count = 0, count2 = 0;
             while(working){
-
+                System.out.println("Tank 1: " + tank85.getFuelAmount());
+                carArrives();
                 for(int i = 0; i < size; i++){
-                    if(pumps[i].isEmpty()) pumps[i].setCar(new Car(5));
                     doWork[i].release();
                 }
 
@@ -54,9 +56,14 @@ public class Station {
                     if (count == 0) System.out.println("Pump " + pumps[i].getId() + ": Amount Pumped: " + pumps[i].getAmountPumped());
                 }
                 count++;
-                if(count > 100){
+                if(count > 1){
                     count = 0;
+                    count2++;
                 }
+                if(count2 > 10){
+                    //working = false;
+                }
+                sleep(500);
             }
         } catch(Exception e){
             return false;
@@ -77,7 +84,10 @@ public class Station {
         Car nextCar = new Car(Math.random()%Car.MaxTankSize);
 
         for(int i = 0; i < size; i++){
-            if(pumps[i].isEmpty()) pumps[i].setCar(nextCar);
+            if(pumps[i].isEmpty()) {
+                pumps[i].setCar(nextCar);
+                break;
+            }
         }
     }
 
