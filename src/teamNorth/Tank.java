@@ -23,7 +23,7 @@ public class Tank {
         else return null;
     }
 
-    public double fuelRequest(double fuelNeeded) {
+    public synchronized double fuelRequest(double fuelNeeded) {
         double fuel = 0;
 
         if (fuelAmount == 0) {
