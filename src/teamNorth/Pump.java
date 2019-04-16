@@ -53,7 +53,7 @@ public class Pump extends Thread {
             default:    car = null;
                         return false;
         }
-        while(car.getRequestedFuel() > amountPumped && tank == null ? tank85.fuelAmount - pumpSpeed / 2 > 0 && tank89.fuelAmount - pumpSpeed / 2 > 0 : tank.fuelAmount - pumpSpeed > 0) {
+        while(car.getRequestedFuel() > amountPumped && (tank == null ? tank85.fuelAmount - pumpSpeed / 2 > 0 && tank89.fuelAmount - pumpSpeed / 2 > 0 : tank.fuelAmount - pumpSpeed > 0)){
             workDone.release();
             doWork.acquire();
             if (tank == null) {
@@ -64,6 +64,7 @@ public class Pump extends Thread {
                 amountPumped += tank.fuelRequest(pumpSpeed);
             }
         }
+        car = null;
         amountPumped = 0;
         return true;
     }
