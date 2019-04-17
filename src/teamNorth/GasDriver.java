@@ -11,6 +11,8 @@ public class GasDriver {
 
     Boolean run(){
         try {
+            station.runStation();
+
             if (endOfTheWorld)
                 throw new Exception();
         } catch(Exception e){
