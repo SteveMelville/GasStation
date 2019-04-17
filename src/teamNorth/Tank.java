@@ -3,6 +3,7 @@ package teamNorth;
 public class Tank {
     static Tank tank85;
     static Tank tank89;
+    static Tank tankDiesel;
     double fuelAmount;
     static double maxFuel = 500.0;
     String name;
@@ -19,6 +20,10 @@ public class Tank {
         else if(name == "89"){
             if(tank89 == null) tank89 = new Tank();
             return tank89;
+        }
+        else if(name.toLowerCase() == "diesel"){
+            if(tankDiesel == null) tankDiesel = new Tank();
+            return tankDiesel;
         }
         else return null;
     }
