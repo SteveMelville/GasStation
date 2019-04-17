@@ -1,2 +1,0 @@
-java teamNorth.Main
-pause
