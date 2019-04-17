@@ -88,7 +88,7 @@ public class Station {
     }
 
     public void carArrives() {
-        Car nextCar = new Car();
+        ICar nextCar = new Car();
 
         for(int i = 0; i < size; i++){
             if(pumps[i].isEmpty()) {
