@@ -9,15 +9,21 @@ public class Station {
     Pump [] pumps = new Pump[size];
     Tank tank85;
     Tank tank89;
+    Tank diesel;
     Semaphore [] doWork = new Semaphore[size];
     Semaphore [] workDone = new Semaphore[size];
     boolean working;
     double orderFuelLevel;
+    static double lostFuel;
+    int carsLost;
 
     public Station(){
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
-        orderFuelLevel = 400;
+        diesel = Tank.getTank("diesel");
+        orderFuelLevel = Tank.getMaxFuel() / 2;
+        lostFuel = 0;
+        carsLost = 0;
         working = true;
 
         for(int i = 0; i < size; i++){
@@ -81,9 +87,9 @@ public class Station {
 
     public void TankReorder(String name){
         if (name == "85"){
-            tank85.refuelTank(10000-tank85.getFuelAmount());
+            tank85.refuelTank(Tank.getMaxFuel()-tank85.getFuelAmount());
         } else if (name == "89"){
-            tank89.refuelTank(10000-tank89.getFuelAmount());
+            tank89.refuelTank(Tank.getMaxFuel()-tank89.getFuelAmount());
         }
     }
 
@@ -95,10 +101,25 @@ public class Station {
                 pumps[i].setCar(nextCar);
                 break;
             }
+            if(i == size -1){
+                carsLost++;
+            }
         }
+    }
+
+    public synchronized static void alertNotEnoughFuel(double amount){
+        lostFuel += amount;
     }
 
     public void carLeaves(int i){
         if(i >= 0 && i < size) pumps[i].setCar(null);
+    }
+
+    public int getCarsLost() {
+        return carsLost;
+    }
+
+    public double getLostFuel() {
+        return lostFuel;
     }
 }

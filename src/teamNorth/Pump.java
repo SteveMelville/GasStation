@@ -5,6 +5,7 @@ import java.util.concurrent.Semaphore;
 public class Pump extends Thread {
     private Tank tank85;
     private Tank tank89;
+    private Tank diesel;
     private int id;
     private double amountPumped;
     private double pumpSpeed;
@@ -16,6 +17,7 @@ public class Pump extends Thread {
         this.workDone = workDone;
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
+        diesel = Tank.getTank("diesel");
         this.id = id;
         amountPumped = 0;
         pumpSpeed = 0.2;
@@ -29,7 +31,7 @@ public class Pump extends Thread {
                 if (isEmpty()) {
                     //doNothing
                 } else {
-                    pumpFuel("85");
+                    pumpFuel(car.getFuelType());
                 }
                 workDone.release();
             }
@@ -50,6 +52,8 @@ public class Pump extends Thread {
                         break;
             case "87":  //Nothing right now
                         break;
+            case "diesel": tank = diesel;
+                            break;
             default:    car = null;
                         return false;
         }
@@ -63,6 +67,9 @@ public class Pump extends Thread {
             else{
                 amountPumped += tank.fuelRequest(pumpSpeed);
             }
+        }
+        if (amountPumped < car.getRequestedFuel()){
+            Station.alertNotEnoughFuel(car.getRequestedFuel() - amountPumped);
         }
         car = null;
         amountPumped = 0;

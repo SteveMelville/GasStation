@@ -5,7 +5,7 @@ public class Tank {
     static Tank tank89;
     static Tank tankDiesel;
     double fuelAmount;
-    static double maxFuel = 500.0;
+    static double maxFuel = 300.0;
     String name;
     private Tank(String name){
         fuelAmount = maxFuel;
@@ -22,7 +22,7 @@ public class Tank {
             return tank89;
         }
         else if(name.toLowerCase() == "diesel"){
-            if(tankDiesel == null) tankDiesel = new Tank();
+            if(tankDiesel == null) tankDiesel = new Tank("Tank Diesel");
             return tankDiesel;
         }
         else return null;
