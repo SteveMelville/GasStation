@@ -88,7 +88,7 @@ public class Station {
     }
 
     public void carArrives() {
-        Car nextCar = new Car(Math.random()%Car.MaxTankSize);
+        Car nextCar = new Car(Math.random()%10);
 
         for(int i = 0; i < size; i++){
             if(pumps[i].isEmpty()) {
