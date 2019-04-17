@@ -6,18 +6,18 @@ public class Tank {
     double fuelAmount;
     static double maxFuel = 500.0;
     String name;
-    private Tank(){
+    private Tank(String name){
         fuelAmount = maxFuel;
-        name = "Tank";
+        this.name = name;
     }
 
     public static Tank getTank(String name){
         if(name == "85"){
-            if(tank85 == null) tank85 = new Tank();
+            if(tank85 == null) tank85 = new Tank("Tank 85");
             return tank85;
         }
         else if(name == "89"){
-            if(tank89 == null) tank89 = new Tank();
+            if(tank89 == null) tank89 = new Tank("Tank 89");
             return tank89;
         }
         else return null;
@@ -52,5 +52,9 @@ public class Tank {
 
     public double getFuelAmount(){
         return fuelAmount;
+    }
+
+    public static double getMaxFuel() {
+        return maxFuel;
     }
 }

@@ -6,11 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
-    @Test
-    void driverRunTest(){
-        GasDriver driver = new GasDriver();
-        assertEquals(true, driver.run());
-    }
+
 
     @Test
     void onlyProperTanksCreatable(){
@@ -47,33 +43,33 @@ class MainTest {
     void TestTankReorder(){
         Station station = new Station();
         Tank tank = Tank.getTank("85");
-        tank.refuelTank(10000);
-        tank.fuelRequest(5000);
-        assertEquals(tank.getFuelAmount(), 5000);
+        tank.refuelTank(tank.getMaxFuel());
+        tank.fuelRequest(tank.getMaxFuel()/2);
+        assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
 
         //amount should update
         station.TankReorder("85");
-        assertEquals(tank.getFuelAmount(), 10000);                    
+        assertEquals(tank.getFuelAmount(), tank.getMaxFuel());
     }
                             
     @Test
     void TestTankReorderInvalidTank(){
         Station station = new Station();
         Tank tank = Tank.getTank("85");
-        tank.refuelTank(10000);
-        tank.fuelRequest(5000);
-        assertEquals(tank.getFuelAmount(), 5000);
+        tank.refuelTank(tank.getMaxFuel());
+        tank.fuelRequest(tank.getMaxFuel()/2);
+        assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
 
         //amount should be the same
         station.TankReorder("87");
-        assertEquals(tank.getFuelAmount(), 5000);                    
+        assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
     }
 
     @Test
     void TankRefill(){
         Tank tank = Tank.getTank("85");
-        tank.refuelTank(10000);
-        tank.fuelRequest(10000);
+        tank.refuelTank(tank.getMaxFuel());
+        tank.fuelRequest(tank.getMaxFuel());
 
         tank.refuelTank(20);
         assertEquals(20,tank.getFuelAmount());
@@ -84,7 +80,7 @@ class MainTest {
     void TankFuelRequest(){
         Tank tank = Tank.getTank("85");
         tank.refuelTank(10000);
-        assertEquals(10000, tank.fuelRequest(10000));
+        assertEquals(tank.getMaxFuel(), tank.fuelRequest(tank.getMaxFuel()));
 
         tank.refuelTank(20);
 
@@ -94,10 +90,10 @@ class MainTest {
     @Test
     void maxTenThousand(){
         Tank tank = Tank.getTank("85");
-        tank.fuelRequest(10000);
+        tank.fuelRequest(tank.getMaxFuel());
 
         tank.refuelTank(12000);
-        assertEquals(10000, tank.getFuelAmount());
+        assertEquals(tank.getMaxFuel(), tank.getFuelAmount());
     }
 
 }
