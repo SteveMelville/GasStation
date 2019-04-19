@@ -67,6 +67,7 @@ public class Pump extends Thread {
             else{
                 amountPumped += tank.fuelRequest(pumpSpeed);
             }
+            Station.updateTotalFuelSold(pumpSpeed);
         }
         if (amountPumped < car.getRequestedFuel()){
             Station.alertNotEnoughFuel(car.getRequestedFuel() - amountPumped);
