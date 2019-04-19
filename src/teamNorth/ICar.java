@@ -2,7 +2,7 @@ package teamNorth;
 
 public interface ICar {
     double getRequestedFuel();
-    void setMaxTankSize(int maxTankSize);
+    void setMaxTankSize(double maxTankSize);
     double getMaxTankSize();
     String getFuelType();
 }

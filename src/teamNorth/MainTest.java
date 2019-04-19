@@ -43,7 +43,7 @@ class MainTest {
     void TestTankReorder(){
         Station station = new Station();
         Tank tank = Tank.getTank("85");
-        tank.refuelTank(tank.getMaxFuel());
+        tank.refuelTank(tank.getMaxFuel()-tank.fuelAmount);
         tank.fuelRequest(tank.getMaxFuel()/2);
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
 
@@ -56,7 +56,7 @@ class MainTest {
     void TestTankReorderInvalidTank(){
         Station station = new Station();
         Tank tank = Tank.getTank("85");
-        tank.refuelTank(tank.getMaxFuel());
+        tank.refuelTank(tank.getMaxFuel()-tank.fuelAmount);
         tank.fuelRequest(tank.getMaxFuel()/2);
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
 
@@ -68,7 +68,7 @@ class MainTest {
     @Test
     void TankRefill(){
         Tank tank = Tank.getTank("85");
-        tank.refuelTank(tank.getMaxFuel());
+        tank.refuelTank(tank.getMaxFuel()-tank.fuelAmount);
         tank.fuelRequest(tank.getMaxFuel());
 
         tank.refuelTank(20);
@@ -79,7 +79,7 @@ class MainTest {
     @Test
     void TankFuelRequest(){
         Tank tank = Tank.getTank("85");
-        tank.refuelTank(10000);
+        tank.refuelTank(tank.getMaxFuel()-tank.fuelAmount);
         assertEquals(tank.getMaxFuel(), tank.fuelRequest(tank.getMaxFuel()));
 
         tank.refuelTank(20);
@@ -88,12 +88,38 @@ class MainTest {
     }
 
     @Test
-    void maxTenThousand(){
+    void maxFuelWorks(){
+        Tank tank = Tank.getTank("85");
+        tank.fuelRequest(tank.fuelAmount);
+        double amountOrdered = tank.maxFuel + 200;
+
+        tank.refuelTank(amountOrdered);
+        assertEquals(tank.getMaxFuel(), tank.getFuelAmount());
+        Station.alertFuelExcess(-200);
+    }
+
+    @Test
+    void fuelExcessWorks(){
+        Station station = new Station();
         Tank tank = Tank.getTank("85");
         tank.fuelRequest(tank.getMaxFuel());
+        double amountOrdered = tank.maxFuel + 200;
 
-        tank.refuelTank(12000);
-        assertEquals(tank.getMaxFuel(), tank.getFuelAmount());
+        tank.refuelTank(amountOrdered);
+        assertEquals(200, station.getFuelExcess());
+    }
+
+    @Test
+    void CarMaxTankSize(){
+        Car car = new PickupTruck();
+
+
+        assertEquals(30.0, car.getMaxTankSize());
+
+        Car car2 = new SemiTruck();
+
+        assertEquals(63.0, car2.getMaxTankSize());
+        assertNotEquals(30.0, car.getMaxTankSize());
     }
 
 }

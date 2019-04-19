@@ -3,8 +3,8 @@ package teamNorth;
 import java.util.Random;
 
 public class Car implements ICar{
-    private double requestedFuel;
-    static private double MaxTankSize = 15;
+    double requestedFuel;
+    static private double MaxTankSize = 15.0;
     String fuelType;
     Random random = new Random();
 
@@ -18,7 +18,7 @@ public class Car implements ICar{
     }
 
     @Override
-    public void setMaxTankSize(int maxTankSize) {
+    public void setMaxTankSize(double maxTankSize) {
         MaxTankSize = maxTankSize;
     }
 

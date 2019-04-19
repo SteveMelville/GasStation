@@ -3,8 +3,11 @@ package teamNorth;
 import java.util.Random;
 
 public class PickupTruck extends Car{
-    String fuelType = "87";
-
+    PickupTruck() {
+        setMaxTankSize(30.0);
+        requestedFuel = random.nextInt((int)getMaxTankSize());
+        fuelType = "87";
+    }
     public String getFuelType(){
         return fuelType;
     }

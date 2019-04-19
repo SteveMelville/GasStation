@@ -5,6 +5,7 @@ public class Tank {
     static Tank tank89;
     static Tank tankDiesel;
     double fuelAmount;
+    static double fuelExcess = 0;
     static double maxFuel = 300.0;
     String name;
     private Tank(String name){
@@ -50,8 +51,9 @@ public class Tank {
         if((fuelAmount + fuel) <= maxFuel) {
             fuelAmount = fuelAmount + fuel;
         } else{
-            double fuelExcess = (fuelAmount + fuel) - maxFuel;
+            fuelExcess = (fuelAmount + fuel) - maxFuel;
             fuelAmount = (fuelAmount + fuel) - fuelExcess;
+            Station.alertFuelExcess(fuelExcess);
         }
     }
 
@@ -62,4 +64,5 @@ public class Tank {
     public static double getMaxFuel() {
         return maxFuel;
     }
+
 }

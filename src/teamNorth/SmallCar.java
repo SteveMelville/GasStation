@@ -1,8 +1,8 @@
 package teamNorth;
 
-public class Sedan extends Car {
-    Sedan(){
-        setMaxTankSize(19.0);
+public class SmallCar extends Car{
+    SmallCar(){
+        setMaxTankSize(2.0);
         requestedFuel = random.nextInt((int)getMaxTankSize());
         fuelType = "85";
     }
