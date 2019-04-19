@@ -1,61 +1,86 @@
 package teamNorth;
 
-public class Pump {
+import java.util.concurrent.Semaphore;
+
+public class Pump extends Thread {
     private Tank tank85;
     private Tank tank89;
+    private Tank diesel;
     private int id;
     private double amountPumped;
     private double pumpSpeed;
-    private Car car;
+    Semaphore doWork, workDone;
+    private ICar car;
 
-    Pump(int id){
+    Pump(int id, Semaphore doWork, Semaphore workDone){
+        this.doWork = doWork;
+        this.workDone = workDone;
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
+        diesel = Tank.getTank("diesel");
         this.id = id;
         amountPumped = 0;
-        pumpSpeed = 0.1;
+        pumpSpeed = 0.2;
         car = null;
     }
 
-    public double pumpFuel(double amount, String name){
+    public void run(){
+        while(true) {
+            try {
+                doWork.acquire();
+                if (isEmpty()) {
+                    //doNothing
+                } else {
+                    pumpFuel(car.getFuelType());
+                }
+                workDone.release();
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean pumpFuel(String name) throws Exception{
         double availableFuel = 0;
         amountPumped = 0;
         Tank tank = null;
         switch (name){
-            case "85":  availableFuel = tank85.getFuelAmount();
-                        if(availableFuel < amount) return HandleEmptyTank(tank85);
-                        else tank = tank85;
+            case "85":  tank = tank85;
                         break;
-            case "89":  availableFuel = tank89.getFuelAmount();
-                        if(availableFuel < amount) return HandleEmptyTank(tank89);
-                        else tank = tank89;
+            case "89":  tank = tank89;
                         break;
-            case "87":  availableFuel = tank85.getFuelAmount();
-                        if(availableFuel < amount / 2) return HandleEmptyTank(tank85);
-                        availableFuel = tank89.getFuelAmount();
-                        if(availableFuel < amount / 2) return HandleEmptyTank(tank89);
+            case "87":  //Nothing right now
                         break;
+            case "diesel": tank = diesel;
+                            break;
+            default:    car = null;
+                        return false;
         }
-        if(tank != null)
-            tank.fuelRequest(amount);
-        else{
-            pumpFuel(amount / 2, "85");
-            pumpFuel(amount / 2, "89");
+        while(car.getRequestedFuel() > amountPumped && (tank == null ? tank85.fuelAmount - pumpSpeed / 2 > 0 && tank89.fuelAmount - pumpSpeed / 2 > 0 : tank.fuelAmount - pumpSpeed > 0)){
+            workDone.release();
+            doWork.acquire();
+            if (tank == null) {
+                amountPumped += tank85.fuelRequest(pumpSpeed / 2);
+                amountPumped += tank89.fuelRequest(pumpSpeed / 2);
+            }
+            else{
+                amountPumped += tank.fuelRequest(pumpSpeed);
+            }
         }
-
-        while(amountPumped < amount){
-            amountPumped += pumpSpeed;
+        if (amountPumped < car.getRequestedFuel()){
+            Station.alertNotEnoughFuel(car.getRequestedFuel() - amountPumped);
         }
-
+        car = null;
         amountPumped = 0;
-        return amount;
+        return true;
     }
 
     public double HandleEmptyTank(Tank tank){
         return -1;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -67,11 +92,16 @@ public class Pump {
         this.pumpSpeed = pumpSpeed;
     }
 
-    public Car getCar() {
+    public ICar getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(ICar car) {
         this.car = car;
+    }
+
+    public Boolean isEmpty(){
+        if(car == null) { return true; }
+        else { return false; }
     }
 }
