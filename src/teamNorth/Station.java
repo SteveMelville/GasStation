@@ -97,7 +97,7 @@ public class Station {
     }
 
     public void carArrives() {
-        CarType cartype = CarType.Car;
+        CarType cartype = CarType.getRandomCar();
         ICar nextCar = Factory.carCreate(cartype);
 
         for(int i = 0; i < size; i++){
