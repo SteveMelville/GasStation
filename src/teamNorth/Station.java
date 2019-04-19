@@ -14,7 +14,7 @@ public class Station {
     Semaphore [] workDone = new Semaphore[size];
     boolean working;
     double orderFuelLevel;
-    static double lostFuel, fuelExcess;
+    static double lostFuel, totalFuelSold, fuelExcess;
     int carsLost;
 
     public Station(){
@@ -25,6 +25,7 @@ public class Station {
         lostFuel = 0;
         carsLost = 0;
         fuelExcess = 0;
+        totalFuelSold = 0;
         working = true;
 
         for(int i = 0; i < size; i++){
@@ -54,6 +55,7 @@ public class Station {
             int count = 0, count2 = 0;
             while(working){
                 System.out.println("Tank 1: " + tank85.getFuelAmount());
+                System.out.println("Total Fuel Sold: " + totalFuelSold);
                 carArrives();
                 for(int i = 0; i < size; i++){
                     doWork[i].release();
@@ -114,6 +116,10 @@ public class Station {
     }
 
     public synchronized static void alertFuelExcess(double amount){ fuelExcess += amount; }
+
+    public synchronized static void updateTotalFuelSold(double amount){
+        totalFuelSold += amount;
+    }
 
     public void carLeaves(int i){
         if(i >= 0 && i < size) pumps[i].setCar(null);
