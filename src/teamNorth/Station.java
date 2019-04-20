@@ -5,17 +5,14 @@ import java.util.concurrent.Semaphore;
 import static java.lang.Thread.sleep;
 
 public class Station {
-    int size = 9;
-    Pump [] pumps = new Pump[size];
-    Tank tank85;
-    Tank tank89;
-    Tank diesel;
-    Semaphore [] doWork = new Semaphore[size];
-    Semaphore [] workDone = new Semaphore[size];
     boolean working;
     double orderFuelLevel;
+    int size = 9, carsLost;
+    Tank tank85, tank89, diesel;
+    Pump [] pumps = new Pump[size];
+    FuelTruck truck85, truck89, truckDiesel;
     static double lostFuel, totalFuelSold, fuelExcess;
-    int carsLost;
+    Semaphore [] doWork = new Semaphore[size], workDone = new Semaphore[size], orderFuel = new Semaphore[3];
 
     public Station(){
         tank85 = Tank.getTank("85");
@@ -27,6 +24,14 @@ public class Station {
         fuelExcess = 0;
         totalFuelSold = 0;
         working = true;
+
+        for(int i = 0; i < 3; i++){
+            orderFuel[i] = new Semaphore(0);
+        }
+
+        truck85 = new FuelTruck(tank85, orderFuel[0]);
+        truck89 = new FuelTruck(tank89, orderFuel[1]);
+        truckDiesel = new FuelTruck(diesel, orderFuel[2]);
 
         for(int i = 0; i < size; i++){
             doWork[i] = new Semaphore(0);
@@ -67,11 +72,14 @@ public class Station {
                 }
 
                 if(tank85.getFuelAmount() < orderFuelLevel){
-                    TankReorder("85");
+                    truck85.fuelOrdered = true;
                 }
                 if(tank89.getFuelAmount() < orderFuelLevel){
-                    TankReorder("89");
+                    truck89.fuelOrdered = true;
                 }
+
+                
+
                 count++;
                 if(count > 1){
                     count = 0;
