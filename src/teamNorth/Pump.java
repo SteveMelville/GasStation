@@ -92,7 +92,7 @@ public class Pump extends Thread {
         }
 
         if (amountPumped < car.getRequestedFuel()){
-            Station.alertNotEnoughFuel(car.getRequestedFuel() - amountPumped);
+            Station.alertNotEnoughFuel(name);
         }
 
         car = null;

@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 
 public class FuelTruck extends Thread {
     Tank tank;
-    int orderArrivalTime = 5;
+    int orderArrivalTime = 50;
     Boolean fuelOrdered;
     Semaphore fuelOrder;
 

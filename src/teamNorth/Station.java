@@ -9,24 +9,25 @@ public class Station {
     double orderFuelLevel;
     static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium;
     int carsLost, carsArrived, carsServed;
-    static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders;
+    static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders, outOfRegular, outOfPremium, outOfDiesel, outOfMidgrade;
     static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
     int size = 9;
     Tank tank85, tank89, diesel;
     Pump [] pumps = new Pump[size];
     FuelTruck truck85, truck89, truckDiesel;
-    static double lostFuel, totalFuelSold, fuelExcess;
+    static double lostFuel, totalFuelSold;
     Semaphore [] doWork = new Semaphore[size], workDone = new Semaphore[size], orderFuel = new Semaphore[3];
 
     public Station(){
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
         diesel = Tank.getTank("diesel");
-        orderFuelLevel = Tank.getMaxFuel() / 2;
+        orderFuelLevel = /*Tank.getMaxFuel() / 2*/ 200;
         lostFuel = 0;
         carsLost = carsArrived = carsServed = 0;
         regularTruckOrders = premiumTruckOrders = dieselTruckOrders = 0;
         fuelExcessRegular = fuelExcessPremium = fuelExcessDiesel = 0;
+        outOfDiesel = outOfPremium = outOfRegular = outOfMidgrade = 0;
         totalFuelSold = 0;
         premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = 0;
         working = true;
@@ -117,12 +118,14 @@ public class Station {
                     System.out.println("Total Midgrade Sold: " + midgradeFuelSold);
                     System.out.println("Total Premium Sold: " + premiumFuelSold);
                     System.out.println("Total Diesel Sold: " + dieselFuelSold);
+                    System.out.println("Cars lost: " + carsLost + "\nCars Arrived: " + carsArrived);
+                    System.out.println("Cars lost because out of -- Regular: " + outOfRegular + " --Midgrade: " + outOfMidgrade + " --Premium: " + outOfPremium + " --Diesel: " + outOfDiesel);
+                    System.out.println("Excess for -- Regular: " + fuelExcessRegular + " -- Premium: " + fuelExcessPremium + " -- Diesel: " + fuelExcessDiesel);
                     count = 0;
                     count2++;
                 }
                 if(count2 > 10){
                     count2 = 0;
-                    System.out.println("Cars lost: " + carsLost + "\nCars Arrived: " + carsArrived);
                 }
                 sleep(50);
             }
@@ -133,23 +136,36 @@ public class Station {
     }
 
     public void carArrives() {
-        carsArrived += 1;
-        CarType cartype = CarType.getRandomCar();
-        ICar nextCar = Factory.carCreate(cartype);
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+        if(random.nextInt(10) == 0) {
+            carsArrived += 1;
+            CarType cartype = CarType.getRandomCar();
+            ICar nextCar = Factory.carCreate(cartype);
 
-        for(int i = 0; i < size; i++){
-            if(pumps[i].isEmpty()) {
-                pumps[i].setCar(nextCar);
-                break;
-            }
-            if(i == size -1){
-                carsLost++;
+            for (int i = 0; i < size; i++) {
+                if (pumps[i].isEmpty()) {
+                    pumps[i].setCar(nextCar);
+                    break;
+                }
+                if (i == size - 1) {
+                    carsLost++;
+                }
             }
         }
     }
 
-    public synchronized static void alertNotEnoughFuel(double amount){
-        lostFuel += amount;
+    public synchronized static void alertNotEnoughFuel(String type){
+        switch(type){
+            case "85": outOfRegular++;
+                break;
+            case "89": outOfPremium++;
+                break;
+            case "87": outOfMidgrade++;
+                break;
+            case "diesel": outOfDiesel++;
+                break;
+        }
     }
 
     public synchronized static void alertFuelExcess(double amount, Tank tank) {
