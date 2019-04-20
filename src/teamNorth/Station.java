@@ -17,6 +17,8 @@ public class Station {
     FuelTruck truck85, truck89, truckDiesel;
     static double lostFuel, totalFuelSold;
     Semaphore [] doWork = new Semaphore[size], workDone = new Semaphore[size], orderFuel = new Semaphore[3];
+    Observer [] pumpObservers = new Observer[9], tankObservers = new Observer[3];
+    Observer mainStats;
 
     public Station(){
         tank85 = Tank.getTank("85");
@@ -31,6 +33,12 @@ public class Station {
         totalFuelSold = 0;
         premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = 0;
         working = true;
+
+        tankObservers[0] = new TankDisplay(tank85);
+        tankObservers[1] = new TankDisplay(tank89);
+        tankObservers[2] = new TankDisplay(diesel);
+
+        mainStats = new MainDisplay();
 
         for(int i = 0; i < 3; i++){
             orderFuel[i] = new Semaphore(0);
@@ -47,6 +55,10 @@ public class Station {
 
         for(int i = 0; i < size; i++){
             pumps[i] = new Pump(i, doWork[i], workDone[i]);
+        }
+
+        for(int i = 0; i < pumpObservers.length; i++){
+            pumpObservers[i] = new PumpDisplay(pumps[i]);
         }
     }
 
@@ -80,7 +92,6 @@ public class Station {
 
                 for(int i = 0; i < size; i++){
                     workDone[i].acquire();
-                    if (count == 0) System.out.println("Pump " + pumps[i].getId() + ": Amount Pumped: " + pumps[i].getAmountPumped() + pumps[i].getCarData());
                 }
 
                 if(tank85.getFuelAmount() < orderFuelLevel && !truck85.fuelOrdered){
@@ -111,6 +122,9 @@ public class Station {
 
                 count++;
                 if(count > 10){
+                    for(int i = 0; i < pumpObservers.length; i++){
+                        pumpObservers[i].update();
+                    }
                     System.out.println("Tank 85: " + tank85.getFuelAmount());
                     System.out.println("Tank 89: " + tank89.getFuelAmount());
                     System.out.println("Tank Diesel: " + diesel.getFuelAmount());
