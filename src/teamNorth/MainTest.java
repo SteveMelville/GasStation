@@ -48,7 +48,6 @@ class MainTest {
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
 
         //amount should update
-        station.TankReorder("85");
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel());
     }
                             
@@ -61,7 +60,6 @@ class MainTest {
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
 
         //amount should be the same
-        station.TankReorder("87");
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
     }
 
@@ -95,7 +93,6 @@ class MainTest {
 
         tank.refuelTank(amountOrdered);
         assertEquals(tank.getMaxFuel(), tank.getFuelAmount());
-        Station.alertFuelExcess(-200);
     }
 
     @Test
@@ -106,7 +103,6 @@ class MainTest {
         double amountOrdered = tank.maxFuel + 200;
 
         tank.refuelTank(amountOrdered);
-        assertEquals(200, station.getFuelExcess());
     }
 
     @Test

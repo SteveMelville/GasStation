@@ -7,6 +7,7 @@ public class PickupTruck extends Car{
         setMaxTankSize(30.0);
         requestedFuel = random.nextInt((int)getMaxTankSize());
         fuelType = "87";
+        name = "TRUCK";
     }
     public String getFuelType(){
         return fuelType;

@@ -5,5 +5,6 @@ public class Sedan extends Car {
         setMaxTankSize(19.0);
         requestedFuel = random.nextInt((int)getMaxTankSize());
         fuelType = "85";
+        name = "Sedan";
     }
 }

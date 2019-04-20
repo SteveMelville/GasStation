@@ -9,7 +9,7 @@ public class Station {
     double orderFuelLevel;
     static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium;
     int carsLost, carsArrived, carsServed;
-    int regularTruckOrders, premiumTruckOrders, dieselTruckOrders;
+    static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders;
     static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
     int size = 9;
     Tank tank85, tank89, diesel;
@@ -65,10 +65,13 @@ public class Station {
             for(int i = 0; i < size; i++){
                 pumps[i].start();
             }
+
+            truck85.start();
+            truck89.start();
+            truckDiesel.start();
+
             int count = 0, count2 = 0;
             while(working){
-                System.out.println("Tank 1: " + tank85.getFuelAmount());
-                System.out.println("Total Fuel Sold: " + totalFuelSold);
                 carArrives();
                 for(int i = 0; i < size; i++){
                     doWork[i].release();
@@ -76,45 +79,57 @@ public class Station {
 
                 for(int i = 0; i < size; i++){
                     workDone[i].acquire();
-                    if (count == 0) System.out.println("Pump " + pumps[i].getId() + ": Amount Pumped: " + pumps[i].getAmountPumped());
+                    if (count == 0) System.out.println("Pump " + pumps[i].getId() + ": Amount Pumped: " + pumps[i].getAmountPumped() + pumps[i].getCarData());
                 }
 
-                if(tank85.getFuelAmount() < orderFuelLevel){
+                if(tank85.getFuelAmount() < orderFuelLevel && !truck85.fuelOrdered){
+                    System.out.println("85 ordered");
                     truck85.fuelOrdered = true;
+                    regularTruckOrders += 1;
                 }
-                if(tank89.getFuelAmount() < orderFuelLevel){
+                if(tank89.getFuelAmount() < orderFuelLevel && !truck89.fuelOrdered){
+                    System.out.println("89 ordered");
                     truck89.fuelOrdered = true;
+                    premiumTruckOrders += 1;
                 }
-                if(diesel.getFuelAmount() < orderFuelLevel){
+                if(diesel.getFuelAmount() < orderFuelLevel && !truckDiesel.fuelOrdered){
+                    System.out.println("Diesel ordered");
                     truckDiesel.fuelOrdered = true;
+                    dieselTruckOrders += 1;
                 }
+
+                if(truck85.fuelOrdered){
+                    truck85.fuelOrder.release();
+                }
+                if(truck89.fuelOrdered){
+                    truck89.fuelOrder.release();
+                }
+                if(truckDiesel.fuelOrdered){
+                    truckDiesel.fuelOrder.release();
+                }
+
                 count++;
-                if(count > 1){
+                if(count > 10){
+                    System.out.println("Tank 85: " + tank85.getFuelAmount());
+                    System.out.println("Tank 89: " + tank89.getFuelAmount());
+                    System.out.println("Tank Diesel: " + diesel.getFuelAmount());
+                    System.out.println("Total Regular Sold: " + regularFuelSold);
+                    System.out.println("Total Midgrade Sold: " + midgradeFuelSold);
+                    System.out.println("Total Premium Sold: " + premiumFuelSold);
+                    System.out.println("Total Diesel Sold: " + dieselFuelSold);
                     count = 0;
                     count2++;
                 }
                 if(count2 > 10){
-                    //working = false;
+                    count2 = 0;
+                    System.out.println("Cars lost: " + carsLost + "\nCars Arrived: " + carsArrived);
                 }
-                sleep(500);
+                sleep(50);
             }
         } catch(Exception e){
             return false;
         }
         return true;
-    }
-
-    public void TankReorder(String name){
-        if (name == "85"){
-            regularTruckOrders += 1;
-            tank85.refuelTank(Tank.getMaxFuel()-tank85.getFuelAmount());
-        } else if (name == "89"){
-            premiumTruckOrders += 1;
-            tank89.refuelTank(Tank.getMaxFuel()-tank89.getFuelAmount());
-        } else if (name == "diesel"){
-            dieselTruckOrders += 1;
-            diesel.refuelTank(Tank.getMaxFuel()-diesel.getFuelAmount());
-        }
     }
 
     public void carArrives() {

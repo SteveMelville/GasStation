@@ -132,6 +132,15 @@ public class Pump extends Thread {
         return car;
     }
 
+    public String getCarData(){
+        if(car != null)
+            return " -Car Name: " + car.getName() + " -Car Fuel Type: " + car.getFuelType();
+        else
+            return "";
+    }
+
+
+
     public void setCar(ICar car) {
         this.car = car;
     }

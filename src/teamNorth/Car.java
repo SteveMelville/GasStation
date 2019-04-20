@@ -6,11 +6,13 @@ public class Car implements ICar{
     double requestedFuel;
     static private double MaxTankSize = 15.0;
     String fuelType;
+    String name;
     Random random = new Random();
 
     Car(){
         requestedFuel = random.nextInt((int)MaxTankSize);
         fuelType = "85";
+        name = "Car!";
     }
 
     public double getRequestedFuel() {
@@ -31,4 +33,11 @@ public class Car implements ICar{
     public String getFuelType() {
         return fuelType;
     }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+
 }

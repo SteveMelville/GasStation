@@ -10,6 +10,8 @@ public class FuelTruck extends Thread {
 
     FuelTruck(Tank tank, Semaphore sem) {
         this.tank = tank;
+        fuelOrder = sem;
+        fuelOrdered = false;
     }
 
     public void run() {
@@ -18,6 +20,7 @@ public class FuelTruck extends Thread {
                 for (int i = 0; i < orderArrivalTime; i++) {
                     fuelOrder.acquire();
                 }
+                System.out.println("Truck arrived! " + tank.name);
                 tank.refuelTank(tank.maxFuel);
                 fuelOrdered = false;
             }
