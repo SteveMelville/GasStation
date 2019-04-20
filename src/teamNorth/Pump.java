@@ -78,7 +78,7 @@ public class Pump extends Thread {
                             Station.updateRegularSold(pumpSpeed);
                             break;
                 case "89":  gas89Pumped += amountPumped;
-                            Station.updatePremiumFuelSold(pumpSpeed);
+                            Station.updatePremiumSold(pumpSpeed);
                             break;
                 case "87":  gas87Pumped += pumpSpeed;
                             Station.updateMidgradeSold(pumpSpeed);

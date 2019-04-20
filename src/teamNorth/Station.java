@@ -7,7 +7,11 @@ import static java.lang.Thread.sleep;
 public class Station {
     boolean working;
     double orderFuelLevel;
-    int size = 9, carsLost;
+    static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium;
+    int carsLost, carsArrived, carsServed;
+    int regularTruckOrders, premiumTruckOrders, dieselTruckOrders;
+    static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
+    int size = 9;
     Tank tank85, tank89, diesel;
     Pump [] pumps = new Pump[size];
     FuelTruck truck85, truck89, truckDiesel;
@@ -20,9 +24,11 @@ public class Station {
         diesel = Tank.getTank("diesel");
         orderFuelLevel = Tank.getMaxFuel() / 2;
         lostFuel = 0;
-        carsLost = 0;
-        fuelExcess = 0;
+        carsLost = carsArrived = carsServed = 0;
+        regularTruckOrders = premiumTruckOrders = dieselTruckOrders = 0;
+        fuelExcessRegular = fuelExcessPremium = fuelExcessDiesel = 0;
         totalFuelSold = 0;
+        premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = 0;
         working = true;
 
         for(int i = 0; i < 3; i++){
@@ -48,6 +54,8 @@ public class Station {
             return tank85.getFuelAmount();
         } else if (name == "89"){
             return tank89.getFuelAmount();
+        }else if (name == "diesel"){
+            return diesel.getFuelAmount();
         }
         return 0;
     }
@@ -77,9 +85,9 @@ public class Station {
                 if(tank89.getFuelAmount() < orderFuelLevel){
                     truck89.fuelOrdered = true;
                 }
-
-                
-
+                if(diesel.getFuelAmount() < orderFuelLevel){
+                    truckDiesel.fuelOrdered = true;
+                }
                 count++;
                 if(count > 1){
                     count = 0;
@@ -98,13 +106,19 @@ public class Station {
 
     public void TankReorder(String name){
         if (name == "85"){
+            regularTruckOrders += 1;
             tank85.refuelTank(Tank.getMaxFuel()-tank85.getFuelAmount());
         } else if (name == "89"){
+            premiumTruckOrders += 1;
             tank89.refuelTank(Tank.getMaxFuel()-tank89.getFuelAmount());
+        } else if (name == "diesel"){
+            dieselTruckOrders += 1;
+            diesel.refuelTank(Tank.getMaxFuel()-diesel.getFuelAmount());
         }
     }
 
     public void carArrives() {
+        carsArrived += 1;
         CarType cartype = CarType.getRandomCar();
         ICar nextCar = Factory.carCreate(cartype);
 
@@ -123,11 +137,25 @@ public class Station {
         lostFuel += amount;
     }
 
-    public synchronized static void alertFuelExcess(double amount){ fuelExcess += amount; }
+    public synchronized static void alertFuelExcess(double amount, Tank tank) {
+        if(tank.name == "Tank 85"){
+            fuelExcessRegular += amount;
+        } else if(tank.name == "Tank 89"){
+            fuelExcessPremium += amount;
+        } else{
+            fuelExcessDiesel += amount;
+        }
+    }
 
     public synchronized static void updateTotalFuelSold(double amount){
         totalFuelSold += amount;
     }
+    public synchronized static void updatePremiumSold(double amount){
+        premiumFuelSold += amount;
+    }
+    public synchronized static void updateMidgradeSold(double amount)  {midgradeFuelSold += amount;}
+    public synchronized static void updateRegularSold(double amount){regularFuelSold += amount;}
+    public synchronized static void updateDieselSold(double amount){dieselFuelSold += amount;}
 
     public void carLeaves(int i){
         if(i >= 0 && i < size) pumps[i].setCar(null);
@@ -141,7 +169,7 @@ public class Station {
         return lostFuel;
     }
 
-    public double getFuelExcess() {
-        return fuelExcess;
-    }
+    //public double getFuelExcess() {
+        //return fuelExcess;
+    //}
 }
