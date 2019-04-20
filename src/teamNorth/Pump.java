@@ -74,16 +74,16 @@ public class Pump extends Thread {
                 amountPumped += tank.fuelRequest(pumpSpeed);
             }
             switch (name){
-                case "85":  gas85Pumped += amountPumped;
+                case "85":  gas85Pumped += pumpSpeed;
                             Station.updateRegularSold(pumpSpeed);
                             break;
-                case "89":  gas89Pumped += amountPumped;
+                case "89":  gas89Pumped += pumpSpeed;
                             Station.updatePremiumSold(pumpSpeed);
                             break;
                 case "87":  gas87Pumped += pumpSpeed;
                             Station.updateMidgradeSold(pumpSpeed);
                             break;
-                case "diesel":  dieselPumped += amountPumped;
+                case "diesel":  dieselPumped += pumpSpeed;
                                 Station.updateDieselSold(pumpSpeed);
                                 break;
                 default:    throw new Exception("Something went very wrong...");
@@ -134,9 +134,9 @@ public class Pump extends Thread {
 
     public String getCarData(){
         if(car != null)
-            return " -Car Name: " + car.getName() + " -Car Fuel Type: " + car.getFuelType();
+            return "Car:\n -Name: " + car.getName() + "\n -Fuel Type: " + car.getFuelType() + "\n -Amount Requested: " + car.getRequestedFuel();
         else
-            return "";
+            return "Car:\n -Name: Oof \n -Fuel Type: Yeet \n -Amount Requested: no";
     }
 
 

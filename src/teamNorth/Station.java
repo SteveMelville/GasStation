@@ -1,4 +1,5 @@
 package teamNorth;
+import java.awt.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
@@ -19,6 +20,8 @@ public class Station {
     Semaphore [] doWork = new Semaphore[size], workDone = new Semaphore[size], orderFuel = new Semaphore[3];
     Observer [] pumpObservers = new Observer[9], tankObservers = new Observer[3];
     Observer mainStats;
+    GridBagConstraints c;
+    StationDisplay display;
 
     public Station(){
         tank85 = Tank.getTank("85");
@@ -34,11 +37,6 @@ public class Station {
         premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = 0;
         working = true;
 
-        tankObservers[0] = new TankDisplay(tank85);
-        tankObservers[1] = new TankDisplay(tank89);
-        tankObservers[2] = new TankDisplay(diesel);
-
-        mainStats = new MainDisplay();
 
         for(int i = 0; i < 3; i++){
             orderFuel[i] = new Semaphore(0);
@@ -57,10 +55,35 @@ public class Station {
             pumps[i] = new Pump(i, doWork[i], workDone[i]);
         }
 
+        c = new GridBagConstraints();
+        c.gridheight=3;
+        c.gridwidth = 6;
+
+        tankObservers[0] = new TankDisplay(tank85, c, 0);
+        tankObservers[1] = new TankDisplay(tank89, c, 1);
+        tankObservers[2] = new TankDisplay(diesel, c, 2);
+
         for(int i = 0; i < pumpObservers.length; i++){
-            pumpObservers[i] = new PumpDisplay(pumps[i]);
+            pumpObservers[i] = new PumpDisplay(pumps[i], c, i);
         }
-    }
+
+        mainStats = new MainDisplay(c, this);
+
+        PumpDisplay [] tempPumpObservers = new PumpDisplay[pumpObservers.length];
+
+        for(int i = 0; i < pumpObservers.length; i++){
+            tempPumpObservers[i]= (PumpDisplay) pumpObservers[i];
+        }
+
+        TankDisplay [] tempTankObservers = new TankDisplay[tankObservers.length];
+
+        for(int i = 0; i < tankObservers.length; i++){
+            tempTankObservers[i]= (TankDisplay) tankObservers[i];
+        }
+
+        display = new StationDisplay(tempPumpObservers, tempTankObservers, (MainDisplay) mainStats, c);
+    }//THIS IS THE END OF THE CONSTRUCTOR, GO NO FARTHER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //k
 
     public double checkFuelLevel(String name){
         if (name == "85"){
@@ -125,16 +148,12 @@ public class Station {
                     for(int i = 0; i < pumpObservers.length; i++){
                         pumpObservers[i].update();
                     }
-                    System.out.println("Tank 85: " + tank85.getFuelAmount());
-                    System.out.println("Tank 89: " + tank89.getFuelAmount());
-                    System.out.println("Tank Diesel: " + diesel.getFuelAmount());
-                    System.out.println("Total Regular Sold: " + regularFuelSold);
-                    System.out.println("Total Midgrade Sold: " + midgradeFuelSold);
-                    System.out.println("Total Premium Sold: " + premiumFuelSold);
-                    System.out.println("Total Diesel Sold: " + dieselFuelSold);
-                    System.out.println("Cars lost: " + carsLost + "\nCars Arrived: " + carsArrived);
-                    System.out.println("Cars lost because out of -- Regular: " + outOfRegular + " --Midgrade: " + outOfMidgrade + " --Premium: " + outOfPremium + " --Diesel: " + outOfDiesel);
-                    System.out.println("Excess for -- Regular: " + fuelExcessRegular + " -- Premium: " + fuelExcessPremium + " -- Diesel: " + fuelExcessDiesel);
+                    for(int i = 0; i < tankObservers.length; i++){
+                        tankObservers[i].update();
+                    }
+                    mainStats.update();
+
+
                     count = 0;
                     count2++;
                 }
@@ -217,4 +236,5 @@ public class Station {
     //public double getFuelExcess() {
         //return fuelExcess;
     //}
+
 }

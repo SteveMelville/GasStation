@@ -1,15 +1,47 @@
 package teamNorth;
 
-public class PumpDisplay implements Observer {
-    Pump pump;
+import javax.swing.*;
+import java.awt.*;
 
-    PumpDisplay(Pump pump){
+public class PumpDisplay  extends JPanel implements Observer {
+    Pump pump;
+    GridBagConstraints c;
+    private JTextArea out;
+    int id;
+
+    PumpDisplay(Pump pump, GridBagConstraints c, int id){
         this.pump = pump;
+        this.c = c;
+        this.id = id;
+        setLayout(new GridBagLayout());
+
+        out = new JTextArea("");
+        c.gridx= 0 + id % 3;
+        c.gridy= id < 3 ? 0 : id < 5 ? 1 : 2;
+        c.ipadx=10;
+        c.ipady=10;
+        add(out, c);
     }
 
     @Override
     public void update() {
-        System.out.println("Pump " + pump.getId() + ": Amount Pumped: " + pump.getAmountPumped() + pump.getCarData());
+        String oof = "\nPump " + (pump.getId() + 1) +
+                "\n" + pump.getCarData() +
+                "\nAmount Pumped: " + String.format("%.2f", pump.getAmountPumped()) +
+                "\nPump Stats: \n -Regular: " + String.format("%.2f", pump.getGasRegularPumped())+
+                "\n -Midgrade: " + String.format("%.2f", pump.getGasMidgradePumped()) +
+                "\n -Premium: " + String.format("%.2f", pump.getGasPremiumPumped()) +
+                "\n -Diesel: " + String.format("%.2f", pump.getDieselPumped());
 
+        System.out.println(oof);
+        setOutput(oof);
+    }
+
+    public void setOutput(String input){
+        out.setText(input);
+    }
+
+    public String getOutput(){
+        return out.getText();
     }
 }
