@@ -8,11 +8,14 @@ public class TankDisplay extends JPanel implements Observer {
     GridBagConstraints c;
     private JTextArea out;
     int id;
+    Station station;
+    FuelTruck truck;
 
-    TankDisplay(Tank tank, GridBagConstraints c, int id){
+    TankDisplay(Tank tank, GridBagConstraints c, int id, Station station){
         this.tank = tank;
         this.c = c;
         this.id = id;
+        this.station = station;
         setLayout(new GridBagLayout());
 
         out = new JTextArea("");
@@ -25,7 +28,14 @@ public class TankDisplay extends JPanel implements Observer {
 
     @Override
     public void update() {
-        setOutput(tank.name);
+
+        String oof = tank.name +
+                "\nCurrent Amount: " + String.format("%.2f", tank.fuelAmount) +
+                "\nMax Capacity: " + Tank.maxFuel +
+                "\nRefuel Level: " + String.format("%.2f", station.orderFuelLevel) +
+                "\nOrder Placed: " + (tank.fuelOrdered ? "Y" : "N") +
+                "\nOrder Quantity: " + Tank.maxFuel;
+        setOutput(oof);
     }
 
     public void setOutput(String input){

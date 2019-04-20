@@ -7,10 +7,12 @@ public class Tank {
     double fuelAmount;
     static double fuelExcess = 0;
     static double maxFuel = 300.0;
+    boolean fuelOrdered;
     String name;
     private Tank(String name){
         fuelAmount = maxFuel;
         this.name = name;
+        fuelOrdered = false;
     }
 
     public static Tank getTank(String name){

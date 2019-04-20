@@ -32,11 +32,11 @@ public class MainDisplay extends JPanel implements Observer {
                 "\nTotal Diesel Sold: " + String.format("%.2f", station.dieselFuelSold) +
                 "\nCars lost: " + station.carsLost +
                 "\nCars Arrived: " + station.carsArrived +
-                "\nCars lost because out of -- Regular: " + station.outOfRegular +
+                "\nCars lost because out of\n  -- Regular: " + station.outOfRegular +
                 "\n   --Midgrade: " + station.outOfMidgrade +
                 "\n   --Premium: " + station.outOfPremium +
                 "\n   --Diesel: " + station.outOfDiesel +
-                "\nExcess for -- Regular: " + String.format("%.2f", station.fuelExcessRegular) +
+                "\nExcess for\n -- Regular: " + String.format("%.2f", station.fuelExcessRegular) +
                 "\n   -- Premium: " + String.format("%.2f", station.fuelExcessPremium) +
                 "\n   -- Diesel: " + String.format("%.2f", station.fuelExcessDiesel);
         System.out.println(oof);

@@ -37,7 +37,6 @@ public class Station {
         premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = 0;
         working = true;
 
-
         for(int i = 0; i < 3; i++){
             orderFuel[i] = new Semaphore(0);
         }
@@ -59,9 +58,9 @@ public class Station {
         c.gridheight=3;
         c.gridwidth = 6;
 
-        tankObservers[0] = new TankDisplay(tank85, c, 0);
-        tankObservers[1] = new TankDisplay(tank89, c, 1);
-        tankObservers[2] = new TankDisplay(diesel, c, 2);
+        tankObservers[0] = new TankDisplay(tank85, c, 0, this);
+        tankObservers[1] = new TankDisplay(tank89, c, 1, this);
+        tankObservers[2] = new TankDisplay(diesel, c, 2, this);
 
         for(int i = 0; i < pumpObservers.length; i++){
             pumpObservers[i] = new PumpDisplay(pumps[i], c, i);
@@ -120,16 +119,19 @@ public class Station {
                 if(tank85.getFuelAmount() < orderFuelLevel && !truck85.fuelOrdered){
                     System.out.println("85 ordered");
                     truck85.fuelOrdered = true;
+                    tank85.fuelOrdered = true;
                     regularTruckOrders += 1;
                 }
                 if(tank89.getFuelAmount() < orderFuelLevel && !truck89.fuelOrdered){
                     System.out.println("89 ordered");
                     truck89.fuelOrdered = true;
+                    tank89.fuelOrdered = true;
                     premiumTruckOrders += 1;
                 }
                 if(diesel.getFuelAmount() < orderFuelLevel && !truckDiesel.fuelOrdered){
                     System.out.println("Diesel ordered");
                     truckDiesel.fuelOrdered = true;
+                    diesel.fuelOrdered = true;
                     dieselTruckOrders += 1;
                 }
 
@@ -144,7 +146,7 @@ public class Station {
                 }
 
                 count++;
-                if(count > 10){
+                if(count > 2){
                     for(int i = 0; i < pumpObservers.length; i++){
                         pumpObservers[i].update();
                     }

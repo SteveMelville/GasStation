@@ -23,6 +23,7 @@ public class FuelTruck extends Thread {
                 System.out.println("Truck arrived! " + tank.name);
                 tank.refuelTank(tank.maxFuel);
                 fuelOrdered = false;
+                tank.fuelOrdered = false;
             }
             catch (Exception e){
                 //This is a comment
