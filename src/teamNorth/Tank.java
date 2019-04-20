@@ -53,7 +53,7 @@ public class Tank {
         } else{
             fuelExcess = (fuelAmount + fuel) - maxFuel;
             fuelAmount = (fuelAmount + fuel) - fuelExcess;
-            Station.alertFuelExcess(fuelExcess);
+            Station.alertFuelExcess(fuelExcess, this);
         }
     }
 
