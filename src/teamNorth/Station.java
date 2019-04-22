@@ -55,8 +55,6 @@ public class Station {
         }
 
         c = new GridBagConstraints();
-        c.gridheight=3;
-        c.gridwidth = 6;
 
         tankObservers[0] = new TankDisplay(tank85, c, 0, this);
         tankObservers[1] = new TankDisplay(tank89, c, 1, this);
