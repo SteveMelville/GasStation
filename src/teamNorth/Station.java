@@ -20,6 +20,7 @@ public class Station {
     Semaphore [] doWork = new Semaphore[size], workDone = new Semaphore[size], orderFuel = new Semaphore[3];
     Observer [] pumpObservers = new Observer[9], tankObservers = new Observer[3];
     Observer mainStats;
+    OrderSlider orderSlider;
     GridBagConstraints c;
     StationDisplay display;
 
@@ -78,7 +79,8 @@ public class Station {
             tempTankObservers[i]= (TankDisplay) tankObservers[i];
         }
 
-        display = new StationDisplay(tempPumpObservers, tempTankObservers, (MainDisplay) mainStats, c);
+        orderSlider = new OrderSlider(c, this);
+        display = new StationDisplay(tempPumpObservers, tempTankObservers, (MainDisplay) mainStats, orderSlider , c);
     }//THIS IS THE END OF THE CONSTRUCTOR, GO NO FARTHER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //k
 

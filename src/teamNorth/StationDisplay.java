@@ -9,7 +9,7 @@ public class StationDisplay extends JFrame{
     private MainDisplay mainDisplay;
     private GridBagConstraints c;
 
-    public StationDisplay(PumpDisplay [] pumps, TankDisplay [] tanks, MainDisplay mainDisplay, GridBagConstraints c){
+    public StationDisplay(PumpDisplay [] pumps, TankDisplay [] tanks, MainDisplay mainDisplay, OrderSlider orderSlider, GridBagConstraints c){
         super("Text Copier");
 
         this.pumps = pumps;
@@ -38,6 +38,14 @@ public class StationDisplay extends JFrame{
             c.gridwidth = 1;
             add(tanks[i], c);
         }
+        c.gridx=6;
+        c.gridy=1;
+        c.ipadx=10;
+        c.ipady=10;
+        add(orderSlider, c);
+        setVisible(true);
+
+
         c.gridx = 4;
         c.gridy = 1;
         c.ipadx = 10;

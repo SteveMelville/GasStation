@@ -5,11 +5,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
-public class OrderSlider extends JFrame {
+public class OrderSlider extends JPanel {
 
-    private final JSlider slider;
-    private final GridBagConstraints c;
-    private Station station;
+    JSlider slider;
+    GridBagConstraints c;
+    Station station;
 
     public OrderSlider(GridBagConstraints c, Station station){
         this.c = c;
@@ -17,17 +17,11 @@ public class OrderSlider extends JFrame {
 
         slider = new JSlider(0,300,200);
         slider.setPreferredSize(new Dimension(150,30));
-        slider.addChangeListener(new ChangeListener(){
-            public void stateChanged(ChangeEvent event){
-                int value = slider.getValue();
-                station.orderFuelLevel = value;
-            }
+        slider.addChangeListener(event -> {
+            int value = slider.getValue();
+            station.orderFuelLevel = value;
         });
-        c.gridx=4;
-        c.gridy=3;
-        c.ipadx=10;
-        c.ipady=10;
-        add(slider, c);
+        add(slider);
         setVisible(true);
     }
 }
