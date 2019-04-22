@@ -25,14 +25,29 @@ public class MainDisplay extends JPanel implements Observer {
                 "\nTotal Regular Sold: " + String.format("%.2f", station.regularFuelSold) +
                 "\nTotal Midgrade Sold: " + String.format("%.2f", station.midgradeFuelSold) +
                 "\nTotal Premium Sold: " + String.format("%.2f", station.premiumFuelSold) +
+                "\n" +
                 "\nTotal Diesel Sold: " + String.format("%.2f", station.dieselFuelSold) +
-                "\nCars lost: " + station.carsLost +
                 "\nCars Arrived: " + station.carsArrived +
+                "\nCars lost: " + station.carsLost +
                 "\nCars lost because out of\n  -- Regular: " + station.outOfRegular +
                 "\n   --Midgrade: " + station.outOfMidgrade +
                 "\n   --Premium: " + station.outOfPremium +
                 "\n   --Diesel: " + station.outOfDiesel +
-                "\nExcess for\n -- Regular: " + String.format("%.2f", station.fuelExcessRegular) +
+                "\n" +
+                "\nTotal fuel orders for" +
+                "\n   -- Regular: " + station.regularTruckOrders +
+                "\n   --Premium: " + station.premiumTruckOrders +
+                "\n   --Diesel: " + station.dieselTruckOrders +
+                "\nTotal gallons ordered for" +
+                "\n   -- Regular: " + station.regularGallonsOrdered +
+                "\n   --Premium: " + station.premiumGallonsOrdered +
+                "\n   --Diesel: " + station.dieselGallonsOrdered +
+                "\nTotal gallons delivered for" +
+                "\n   -- Regular: " + station.regularGallonsDelivered +
+                "\n   --Premium: " + station.premiumGallonsDelivered +
+                "\n   --Diesel: " + station.dieselGallonsDelivered +
+                "\nExcess for" +
+                "\n  -- Regular: " + String.format("%.2f", station.fuelExcessRegular) +
                 "\n   -- Premium: " + String.format("%.2f", station.fuelExcessPremium) +
                 "\n   -- Diesel: " + String.format("%.2f", station.fuelExcessDiesel);
         System.out.println(oof);

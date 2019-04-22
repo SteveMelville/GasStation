@@ -52,6 +52,7 @@ public class Tank {
     public void refuelTank(double fuel){
         if((fuelAmount + fuel) <= maxFuel) {
             fuelAmount = fuelAmount + fuel;
+            Station.alertFuelExcess(0, this);
         } else{
             fuelExcess = (fuelAmount + fuel) - maxFuel;
             fuelAmount = (fuelAmount + fuel) - fuelExcess;

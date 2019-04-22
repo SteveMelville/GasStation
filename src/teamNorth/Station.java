@@ -8,7 +8,7 @@ import static java.lang.Thread.sleep;
 public class Station {
     boolean working;
     double orderFuelLevel;
-    static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium;
+    static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium, regularGallonsOrdered, premiumGallonsOrdered, dieselGallonsOrdered, regularGallonsDelivered, premiumGallonsDelivered, dieselGallonsDelivered;
     int carsLost, carsArrived, carsServed;
     static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders, outOfRegular, outOfPremium, outOfDiesel, outOfMidgrade;
     static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
@@ -34,7 +34,7 @@ public class Station {
         fuelExcessRegular = fuelExcessPremium = fuelExcessDiesel = 0;
         outOfDiesel = outOfPremium = outOfRegular = outOfMidgrade = 0;
         totalFuelSold = 0;
-        premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = 0;
+        premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = regularGallonsOrdered = premiumGallonsOrdered = dieselGallonsOrdered = regularGallonsDelivered = premiumGallonsDelivered = dieselGallonsDelivered= 0;
         working = true;
 
         for(int i = 0; i < 3; i++){
@@ -118,18 +118,21 @@ public class Station {
                     System.out.println("85 ordered");
                     truck85.fuelOrdered = true;
                     tank85.fuelOrdered = true;
+                    regularGallonsOrdered += Tank.maxFuel;
                     regularTruckOrders += 1;
                 }
                 if(tank89.getFuelAmount() < orderFuelLevel && !truck89.fuelOrdered){
                     System.out.println("89 ordered");
                     truck89.fuelOrdered = true;
                     tank89.fuelOrdered = true;
+                    premiumGallonsOrdered += Tank.maxFuel;
                     premiumTruckOrders += 1;
                 }
                 if(diesel.getFuelAmount() < orderFuelLevel && !truckDiesel.fuelOrdered){
                     System.out.println("Diesel ordered");
                     truckDiesel.fuelOrdered = true;
                     diesel.fuelOrdered = true;
+                    dieselGallonsOrdered += Tank.maxFuel;
                     dieselTruckOrders += 1;
                 }
 
@@ -204,10 +207,13 @@ public class Station {
     public synchronized static void alertFuelExcess(double amount, Tank tank) {
         if(tank.name == "Tank 85"){
             fuelExcessRegular += amount;
+            regularGallonsDelivered += Tank.maxFuel - amount;
         } else if(tank.name == "Tank 89"){
             fuelExcessPremium += amount;
+            premiumGallonsDelivered += Tank.maxFuel - amount;
         } else{
             fuelExcessDiesel += amount;
+            dieselGallonsDelivered += Tank.maxFuel - amount;
         }
     }
 
