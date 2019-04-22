@@ -19,11 +19,7 @@ public class TankDisplay extends JPanel implements Observer {
         setLayout(new GridBagLayout());
 
         out = new JTextArea("");
-        c.gridx= 4 + id ;
-        c.gridy= 0;
-        c.ipadx=10;
-        c.ipady=10;
-        add(out, c);
+        add(out);
     }
 
     @Override

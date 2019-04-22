@@ -16,11 +16,7 @@ public class PumpDisplay  extends JPanel implements Observer {
         setLayout(new GridBagLayout());
 
         out = new JTextArea("");
-        c.gridx= 0 + id % 3;
-        c.gridy= id < 3 ? 0 : id < 5 ? 1 : 2;
-        c.ipadx=10;
-        c.ipady=10;
-        add(out, c);
+        add(out);
     }
 
     @Override
