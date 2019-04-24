@@ -19,14 +19,14 @@ public class MainDisplay extends JPanel implements Observer {
 
     @Override
     public void update() {
-        String oof = "\nTank 85: " + String.format("%.2f", station.tank85.getFuelAmount()) +
+        String oof = "Tank 85: " + String.format("%.2f", station.tank85.getFuelAmount()) +
                 "\nTank 89: " + String.format("%.2f", station.tank89.getFuelAmount()) +
                 "\nTank Diesel: " + String.format("%.2f", station.diesel.getFuelAmount()) +
                 "\nTotal Regular Sold: " + String.format("%.2f", station.regularFuelSold) +
                 "\nTotal Midgrade Sold: " + String.format("%.2f", station.midgradeFuelSold) +
                 "\nTotal Premium Sold: " + String.format("%.2f", station.premiumFuelSold) +
-                "\n" +
                 "\nTotal Diesel Sold: " + String.format("%.2f", station.dieselFuelSold) +
+                "\n" +
                 "\nCars Arrived: " + station.carsArrived +
                 "\nCars lost: " + station.carsLost +
                 "\nCars lost because out of\n  -- Regular: " + station.outOfRegular +
@@ -43,9 +43,9 @@ public class MainDisplay extends JPanel implements Observer {
                 "\n   --Premium: " + station.premiumGallonsOrdered +
                 "\n   --Diesel: " + station.dieselGallonsOrdered +
                 "\nTotal gallons delivered for" +
-                "\n   -- Regular: " + station.regularGallonsDelivered +
-                "\n   --Premium: " + station.premiumGallonsDelivered +
-                "\n   --Diesel: " + station.dieselGallonsDelivered +
+                "\n   -- Regular: " + String.format("%.2f", station.regularGallonsDelivered) +
+                "\n   --Premium: " + String.format("%.2f", station.premiumGallonsDelivered) +
+                "\n   --Diesel: " + String.format("%.2f", station.dieselGallonsDelivered) +
                 "\nExcess for" +
                 "\n  -- Regular: " + String.format("%.2f", station.fuelExcessRegular) +
                 "\n   -- Premium: " + String.format("%.2f", station.fuelExcessPremium) +
