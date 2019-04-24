@@ -6,6 +6,7 @@ import java.util.concurrent.Semaphore;
 import static java.lang.Thread.sleep;
 
 public class Station {
+    private SliderDisplay slider;
     boolean working;
     double orderFuelLevel;
     static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium;
@@ -13,6 +14,7 @@ public class Station {
     static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders, outOfRegular, outOfPremium, outOfDiesel, outOfMidgrade;
     static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
     int size = 9;
+    static int CarChance = 1;
     Tank tank85, tank89, diesel;
     Pump [] pumps = new Pump[size];
     FuelTruck truck85, truck89, truckDiesel;
@@ -20,7 +22,6 @@ public class Station {
     Semaphore [] doWork = new Semaphore[size], workDone = new Semaphore[size], orderFuel = new Semaphore[3];
     Observer [] pumpObservers = new Observer[9], tankObservers = new Observer[3];
     Observer mainStats;
-    OrderSlider orderSlider;
     GridBagConstraints c;
     StationDisplay display;
 
@@ -78,9 +79,8 @@ public class Station {
         for(int i = 0; i < tankObservers.length; i++){
             tempTankObservers[i]= (TankDisplay) tankObservers[i];
         }
-
-        orderSlider = new OrderSlider(c, this);
-        display = new StationDisplay(tempPumpObservers, tempTankObservers, (MainDisplay) mainStats, orderSlider , c);
+        slider = new SliderDisplay(c, this);
+        display = new StationDisplay(tempPumpObservers, tempTankObservers, (MainDisplay) mainStats, slider , c);
     }//THIS IS THE END OF THE CONSTRUCTOR, GO NO FARTHER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //k
 
@@ -107,11 +107,11 @@ public class Station {
 
             int count = 0, count2 = 0;
             while(working){
-                carArrives();
+
                 for(int i = 0; i < size; i++){
                     doWork[i].release();
                 }
-
+                carArrives(Station.CarChance);
                 for(int i = 0; i < size; i++){
                     workDone[i].acquire();
                 }
@@ -170,10 +170,10 @@ public class Station {
         return true;
     }
 
-    public void carArrives() {
+    public void carArrives(int chance) {
         Random random = new Random();
         random.setSeed(System.currentTimeMillis());
-        if(random.nextInt(10) == 0) {
+        if(random.nextInt(chance) == 0) {
             carsArrived += 1;
             CarType cartype = CarType.getRandomCar();
             ICar nextCar = Factory.carCreate(cartype);
@@ -235,6 +235,9 @@ public class Station {
         return lostFuel;
     }
 
+    public static void setCarChance(int _carChance){
+        CarChance = _carChance;
+    }
     //public double getFuelExcess() {
         //return fuelExcess;
     //}
