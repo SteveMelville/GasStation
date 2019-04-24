@@ -17,6 +17,8 @@ public class SliderDisplay extends JPanel {
         this.station = station;
         setLayout(new GridLayout(6,1));
 
+// Slider for changeable car arrival chance
+// Set the label to be drawn
         slider = new JSlider(1,100,10);
         slider.setPreferredSize(new Dimension(150,50));
         slider.setMajorTickSpacing(50);
@@ -33,6 +35,7 @@ public class SliderDisplay extends JPanel {
         position.put(75, new JLabel("25"));
         position.put(100, new JLabel("1"));
 
+// Slider for changeable delivery time
 // Set the label to be drawn
         slider.setLabelTable(position);
         slider.addChangeListener(event -> {
@@ -63,6 +66,32 @@ public class SliderDisplay extends JPanel {
         });
         add(status);
         add(slider);
+
+// Slider for changeable fuel pumping rate
+// Set the label to be drawn
+        slider = new JSlider(0, 10, 1);
+        slider.setPreferredSize(new Dimension(150, 30));
+        slider.setMajorTickSpacing(2);
+        slider.setMinorTickSpacing(1);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        status = new JLabel("Pump speed in program tics", JLabel.CENTER);
+
+// Add positions label in the slider
+        position = new Hashtable();
+        position.put(0 , new JLabel("0"));
+        position.put(2, new JLabel("2"));
+        position.put(4, new JLabel("4"));
+        position.put(6 , new JLabel("6"));
+        position.put(8, new JLabel("8"));
+        position.put(10, new JLabel("10"));
+        slider.addChangeListener(event -> {
+            int value = slider.getValue();
+            station.setPumpSpeed((double) value/10);
+        });
+        add(status);
+        add(slider);
+
         setVisible(true);
     }
 }

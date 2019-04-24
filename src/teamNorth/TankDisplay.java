@@ -30,7 +30,7 @@ public class TankDisplay extends JPanel implements Observer {
                 "\nMax Capacity: " + Tank.maxFuel +
                 "\nRefuel Level: " + String.format("%.2f", station.orderFuelLevel) +
                 "\nOrder Placed: " + (tank.fuelOrdered ? "Y" : "N") +
-                "\nOrder Quantity: " + Tank.maxFuel;
+                "\nOrder Quantity: " + Tank.maxFuel ;
         setOutput(oof);
     }
 

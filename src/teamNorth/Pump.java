@@ -17,12 +17,8 @@ public class Pump extends Thread {
         diesel = Tank.getTank("diesel");
         this.id = id;
 
-        amountPumped = 0;
+        amountPumped = gas85Pumped = gas87Pumped = gas89Pumped = dieselPumped = 0;
         pumpSpeed = 0.2;
-        gas85Pumped = 0;
-        gas87Pumped = 0;
-        gas89Pumped = 0;
-        dieselPumped = 0;
 
         car = null;
     }

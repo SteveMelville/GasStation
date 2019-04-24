@@ -248,4 +248,9 @@ public class Station {
         //return fuelExcess;
     //}
 
+    public void setPumpSpeed(double newPumpSpeed){
+        for(int i = 0; i < size; i++){
+            pumps[i].setPumpSpeed(newPumpSpeed);
+        }
+    }
 }
