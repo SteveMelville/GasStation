@@ -256,4 +256,8 @@ public class Station {
             pumps[i].setPumpSpeed(newPumpSpeed);
         }
     }
+
+    public double getOrderFuelLevel(){
+        return orderFuelLevel;
+    }
 }
