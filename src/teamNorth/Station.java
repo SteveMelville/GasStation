@@ -14,7 +14,7 @@ public class Station {
     static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders, outOfRegular, outOfPremium, outOfDiesel, outOfMidgrade;
     static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
     int size = 9;
-    static int CarChance = 1;
+    static int CarChance = 10;
     Tank tank85, tank89, diesel;
     Pump [] pumps = new Pump[size];
     FuelTruck truck85, truck89, truckDiesel;

@@ -9,6 +9,8 @@ import java.util.Hashtable;
 public class SliderDisplay extends JPanel {
 
     JSlider slider;
+    JSlider slider2;
+    JSlider slider3;
     GridBagConstraints c;
     Station station;
 
@@ -45,12 +47,12 @@ public class SliderDisplay extends JPanel {
         add(status);
         add(slider);
 
-        slider = new JSlider(1,1001,50);
-        slider.setPreferredSize(new Dimension(150,30));
-        slider.setMajorTickSpacing(250);
-        slider.setMinorTickSpacing(50);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
+        slider2 = new JSlider(1,1001,50);
+        slider2.setPreferredSize(new Dimension(150,30));
+        slider2.setMajorTickSpacing(250);
+        slider2.setMinorTickSpacing(50);
+        slider2.setPaintTicks(true);
+        slider2.setPaintLabels(true);
         status = new JLabel("Delivery Time in program tics", JLabel.CENTER);
 
 // Add positions label in the slider
@@ -60,21 +62,21 @@ public class SliderDisplay extends JPanel {
         position.put(500, new JLabel("500"));
         position.put(750, new JLabel("750"));
         position.put(1000, new JLabel("1000"));
-        slider.addChangeListener(event -> {
-            int value = slider.getValue();
+        slider2.addChangeListener(event -> {
+            int value = slider2.getValue();
             FuelTruck.setOrderArrivalTime(value);
         });
         add(status);
-        add(slider);
+        add(slider2);
 
 // Slider for changeable fuel pumping rate
 // Set the label to be drawn
-        slider = new JSlider(0, 10, 1);
-        slider.setPreferredSize(new Dimension(150, 30));
-        slider.setMajorTickSpacing(2);
-        slider.setMinorTickSpacing(1);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
+        slider3 = new JSlider(0, 10, 1);
+        slider3.setPreferredSize(new Dimension(150, 30));
+        slider3.setMajorTickSpacing(2);
+        slider3.setMinorTickSpacing(1);
+        slider3.setPaintTicks(true);
+        slider3.setPaintLabels(true);
         status = new JLabel("Pump speed in program tics", JLabel.CENTER);
 
 // Add positions label in the slider
@@ -85,12 +87,12 @@ public class SliderDisplay extends JPanel {
         position.put(6 , new JLabel("6"));
         position.put(8, new JLabel("8"));
         position.put(10, new JLabel("10"));
-        slider.addChangeListener(event -> {
-            int value = slider.getValue();
+        slider3.addChangeListener(event -> {
+            int value = slider3.getValue();
             station.setPumpSpeed((double) value/10);
         });
         add(status);
-        add(slider);
+        add(slider3);
 
         setVisible(true);
     }
