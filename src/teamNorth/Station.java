@@ -13,7 +13,7 @@ public class Station {
     int carsLost, carsArrived, carsServed;
     static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders, outOfRegular, outOfPremium, outOfDiesel, outOfMidgrade;
     static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
-    int size = 9;
+    int size = 9, speed;
     static int CarChance = 10;
     Tank tank85, tank89, diesel;
     Pump [] pumps = new Pump[size];
@@ -38,6 +38,7 @@ public class Station {
         totalFuelSold = 0;
         premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = regularGallonsOrdered = premiumGallonsOrdered = dieselGallonsOrdered = regularGallonsDelivered = premiumGallonsDelivered = dieselGallonsDelivered= 0;
         working = true;
+        speed = 50;
 
         for(int i = 0; i < 3; i++){
             orderFuel[i] = new Semaphore(0);
@@ -165,7 +166,7 @@ public class Station {
                 if(count2 > 10){
                     count2 = 0;
                 }
-                sleep(50);
+                sleep(speed);
             }
         } catch(Exception e){
             return false;
@@ -240,6 +241,8 @@ public class Station {
     public double getLostFuel() {
         return lostFuel;
     }
+
+    public void setSimRunSpeed(int _speed){ speed = _speed; }
 
     public static void setCarChance(int _carChance){
         CarChance = _carChance;
