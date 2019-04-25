@@ -9,7 +9,7 @@ import static java.lang.Thread.sleep;
 public class Station {
     private SliderDisplay slider;
     boolean working;
-    static boolean stationActive;
+    boolean stationActive;
     double orderFuelLevel;
     static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium, regularGallonsOrdered, premiumGallonsOrdered, dieselGallonsOrdered, regularGallonsDelivered, premiumGallonsDelivered, dieselGallonsDelivered;
     int carsLost, carsArrived, carsServed;
@@ -184,7 +184,7 @@ public class Station {
         return true;
     }
 
-    public static boolean getStationActive() {
+    public boolean getStationActive() {
         return stationActive;
     }
 
@@ -234,7 +234,7 @@ public class Station {
         }
     }
 
-    public static void setStationActive(boolean status){
+    public void setStationActive(boolean status){
         stationActive = status;
     }
     public synchronized static void updateTotalFuelSold(double amount){

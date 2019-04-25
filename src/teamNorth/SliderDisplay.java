@@ -51,7 +51,7 @@ public class SliderDisplay extends JPanel {
         add(status);
         add(slider);
 
-        slider2 = new JSlider(1,100,5);
+        slider2 = new JSlider(0,100,5);
         slider2.setPreferredSize(new Dimension(150,30));
         slider2.setMajorTickSpacing(25);
         slider2.setMinorTickSpacing(5);
@@ -68,7 +68,7 @@ public class SliderDisplay extends JPanel {
         position.put(100, new JLabel("100"));
         slider2.addChangeListener(event -> {
             int value = slider2.getValue();
-            FuelTruck.setOrderArrivalTime(value*10);
+            FuelTruck.setOrderArrivalTime((value*10)+1);
         });
         add(status);
         add(slider2);
@@ -123,7 +123,7 @@ public class SliderDisplay extends JPanel {
 
         button = new JButton("Play/Pause");
         button.setBounds(50,100,95,30);
-        button.addActionListener(e -> Station.setStationActive(!Station.getStationActive()));
+        button.addActionListener(e -> station.setStationActive(!station.getStationActive()));
         add(button);
 
         setVisible(true);

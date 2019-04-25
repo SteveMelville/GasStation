@@ -17,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/teamNorth/SliderDisplay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="125" column="93" lean-forward="true" selection-start-line="125" selection-start-column="93" selection-end-line="125" selection-end-column="93" />
+            <state relative-caret-position="391">
+              <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -80,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/teamNorth/Station.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="112" column="101" selection-start-line="112" selection-start-column="101" selection-end-line="112" selection-end-column="101" />
+            <state relative-caret-position="-17">
+              <caret line="237" column="31" lean-forward="true" selection-start-line="237" selection-start-column="31" selection-end-line="237" selection-end-column="31" />
               <folding>
                 <element signature="e#7263#7264#0" expanded="true" />
                 <element signature="e#7299#7300#0" expanded="true" />
@@ -166,8 +166,8 @@
         <option value="$PROJECT_DIR$/src/teamNorth/TankDisplay.java" />
         <option value="$PROJECT_DIR$/src/teamNorth/ReleaseDoWork.java" />
         <option value="$PROJECT_DIR$/src/teamNorth/Pump.java" />
-        <option value="$PROJECT_DIR$/src/teamNorth/SliderDisplay.java" />
         <option value="$PROJECT_DIR$/src/teamNorth/Station.java" />
+        <option value="$PROJECT_DIR$/src/teamNorth/SliderDisplay.java" />
       </list>
     </option>
   </component>
@@ -648,17 +648,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/teamNorth/SliderDisplay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="125" column="93" lean-forward="true" selection-start-line="125" selection-start-column="93" selection-end-line="125" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/teamNorth/Station.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="112" column="101" selection-start-line="112" selection-start-column="101" selection-end-line="112" selection-end-column="101" />
+        <state relative-caret-position="-17">
+          <caret line="237" column="31" lean-forward="true" selection-start-line="237" selection-start-column="31" selection-end-line="237" selection-end-column="31" />
           <folding>
             <element signature="e#7263#7264#0" expanded="true" />
             <element signature="e#7299#7300#0" expanded="true" />
@@ -679,6 +672,13 @@
             <element signature="e#10028#10029#0" expanded="true" />
             <element signature="e#10065#10066#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/teamNorth/SliderDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
         </state>
       </provider>
     </entry>
