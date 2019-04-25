@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
 public class SliderDisplay extends JPanel {
@@ -12,6 +14,7 @@ public class SliderDisplay extends JPanel {
     JSlider slider2;
     JSlider slider3;
     JSlider slider4;
+    JButton button;
     GridBagConstraints c;
     Station station;
 
@@ -48,7 +51,7 @@ public class SliderDisplay extends JPanel {
         add(status);
         add(slider);
 
-        slider2 = new JSlider(0,100,5);
+        slider2 = new JSlider(1,100,5);
         slider2.setPreferredSize(new Dimension(150,30));
         slider2.setMajorTickSpacing(25);
         slider2.setMinorTickSpacing(5);
@@ -117,6 +120,11 @@ public class SliderDisplay extends JPanel {
         });
         add(status);
         add(slider4);
+
+        button = new JButton("Play/Pause");
+        button.setBounds(50,100,95,30);
+        button.addActionListener(e -> Station.setStationActive(!Station.getStationActive()));
+        add(button);
 
         setVisible(true);
     }
