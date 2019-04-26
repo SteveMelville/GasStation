@@ -56,7 +56,7 @@ public class StationDisplay extends JFrame{
         c.gridwidth = 1;
         add(mainDisplay, c);
 
-        setSize(1500, 1000);
+        setSize(1600, 1000);
         setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);

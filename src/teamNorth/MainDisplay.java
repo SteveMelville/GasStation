@@ -19,6 +19,7 @@ public class MainDisplay extends JPanel implements Observer {
 
     @Override
     public void update() {
+        int totalLost = station.carsLost + station.outOfDiesel + station.outOfPremium + station.outOfMidgrade + station.outOfRegular;
         String oof = "Tank 85: " + String.format("%.2f", station.tank85.getFuelAmount()) +
                 "\nTank 89: " + String.format("%.2f", station.tank89.getFuelAmount()) +
                 "\nTank Diesel: " + String.format("%.2f", station.diesel.getFuelAmount()) +
@@ -28,7 +29,8 @@ public class MainDisplay extends JPanel implements Observer {
                 "\nTotal Diesel Sold: " + String.format("%.2f", station.dieselFuelSold) +
                 "\n" +
                 "\nCars Arrived: " + station.carsArrived +
-                "\nCars lost: " + station.carsLost +
+                "\nTotal cars lost: " + totalLost +
+                "\nCars lost because pumps full: " + station.carsLost +
                 "\nCars lost because out of\n  -- Regular: " + station.outOfRegular +
                 "\n   --Midgrade: " + station.outOfMidgrade +
                 "\n   --Premium: " + station.outOfPremium +
@@ -50,7 +52,7 @@ public class MainDisplay extends JPanel implements Observer {
                 "\n  -- Regular: " + String.format("%.2f", station.fuelExcessRegular) +
                 "\n   -- Premium: " + String.format("%.2f", station.fuelExcessPremium) +
                 "\n   -- Diesel: " + String.format("%.2f", station.fuelExcessDiesel) +
-                "\n                                                    ";
+                "\n                                                                ";
         System.out.println(oof);
         setOutput(oof);
     }

@@ -7,6 +7,6 @@ public class SmallCar extends Car{
         fuelType = "85";
         name = "Clown Car";
         image = "\n/T\\\n" +
-                "o-o\n";
+                "o-o";
     }
 }

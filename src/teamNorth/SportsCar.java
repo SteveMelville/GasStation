@@ -6,5 +6,8 @@ public class SportsCar extends Car {
         requestedFuel = random.nextInt((int)getMaxTankSize());
         fuelType = "89";
         name = "Sports Car";
+        image = "\n" +
+                "\\_~___\n" +
+                "O-----o\\";
     }
 }
