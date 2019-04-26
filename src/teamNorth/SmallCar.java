@@ -6,5 +6,7 @@ public class SmallCar extends Car{
         requestedFuel = random.nextInt((int)getMaxTankSize());
         fuelType = "85";
         name = "Clown Car";
+        image = "\n/T\\\n" +
+                "o-o\n";
     }
 }

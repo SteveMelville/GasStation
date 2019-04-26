@@ -19,14 +19,14 @@ public class MainDisplay extends JPanel implements Observer {
 
     @Override
     public void update() {
-        String oof = "\nTank 85: " + String.format("%.2f", station.tank85.getFuelAmount()) +
+        String oof = "Tank 85: " + String.format("%.2f", station.tank85.getFuelAmount()) +
                 "\nTank 89: " + String.format("%.2f", station.tank89.getFuelAmount()) +
                 "\nTank Diesel: " + String.format("%.2f", station.diesel.getFuelAmount()) +
                 "\nTotal Regular Sold: " + String.format("%.2f", station.regularFuelSold) +
                 "\nTotal Midgrade Sold: " + String.format("%.2f", station.midgradeFuelSold) +
                 "\nTotal Premium Sold: " + String.format("%.2f", station.premiumFuelSold) +
-                "\n" +
                 "\nTotal Diesel Sold: " + String.format("%.2f", station.dieselFuelSold) +
+                "\n" +
                 "\nCars Arrived: " + station.carsArrived +
                 "\nCars lost: " + station.carsLost +
                 "\nCars lost because out of\n  -- Regular: " + station.outOfRegular +
@@ -49,7 +49,8 @@ public class MainDisplay extends JPanel implements Observer {
                 "\nExcess for" +
                 "\n  -- Regular: " + String.format("%.2f", station.fuelExcessRegular) +
                 "\n   -- Premium: " + String.format("%.2f", station.fuelExcessPremium) +
-                "\n   -- Diesel: " + String.format("%.2f", station.fuelExcessDiesel);
+                "\n   -- Diesel: " + String.format("%.2f", station.fuelExcessDiesel) +
+                "\n                                                    ";
         System.out.println(oof);
         setOutput(oof);
     }

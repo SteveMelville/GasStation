@@ -6,4 +6,5 @@ public interface ICar {
     double getMaxTankSize();
     String getFuelType();
     String getName();
+    String getImage();
 }
