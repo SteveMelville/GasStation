@@ -6,10 +6,11 @@ import java.awt.*;
 public class TankDisplay extends JPanel implements Observer {
     Tank tank;
     GridBagConstraints c;
-    private JTextArea out;
+    private TankTextArea out;
     int id;
     Station station;
     FuelTruck truck;
+    Color color;
 
     TankDisplay(Tank tank, GridBagConstraints c, int id, Station station){
         this.tank = tank;
@@ -17,8 +18,8 @@ public class TankDisplay extends JPanel implements Observer {
         this.id = id;
         this.station = station;
         setLayout(new GridBagLayout());
-
-        out = new JTextArea("");
+        color = Color.green;
+        out = new TankTextArea("");
         add(out);
     }
 
@@ -26,12 +27,14 @@ public class TankDisplay extends JPanel implements Observer {
     public void update() {
 
         if(tank.getFuelAmount() > Tank.orderFuelLevel){
-            out.setBackground(Color.green);
+            color = Color.green;
         } else if(tank.getFuelAmount() < Tank.orderFuelLevel && tank.getFuelAmount() > (Tank.getMaxFuel()/10)){
-            out.setBackground(Color.yellow);
+            color = Color.yellow;
         } else{
-            out.setBackground(Color.red);
+            color = Color.red;
         }
+        out.setStatus(tank.getFuelAmount(), Tank.getMaxFuel(), color);
+
         String oof = tank.name +
                 "\nCurrent Amount: " + String.format("%.2f", tank.fuelAmount) +
                 "\nMax Capacity: " + Tank.maxFuel +
