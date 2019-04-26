@@ -25,9 +25,9 @@ public class TankDisplay extends JPanel implements Observer {
     @Override
     public void update() {
 
-        if(tank.getFuelAmount() > station.getOrderFuelLevel()){
+        if(tank.getFuelAmount() > Tank.orderFuelLevel){
             out.setBackground(Color.green);
-        } else if(tank.getFuelAmount() < station.getOrderFuelLevel() && tank.getFuelAmount() > 15){
+        } else if(tank.getFuelAmount() < Tank.orderFuelLevel && tank.getFuelAmount() > (Tank.getMaxFuel()/10)){
             out.setBackground(Color.yellow);
         } else{
             out.setBackground(Color.red);
@@ -35,7 +35,7 @@ public class TankDisplay extends JPanel implements Observer {
         String oof = tank.name +
                 "\nCurrent Amount: " + String.format("%.2f", tank.fuelAmount) +
                 "\nMax Capacity: " + Tank.maxFuel +
-                "\nRefuel Level: " + String.format("%.2f", station.orderFuelLevel) +
+                "\nRefuel Level: " + String.format("%.2f", Tank.orderFuelLevel) +
                 "\nOrder Placed: " + (tank.fuelOrdered ? "Y" : "N") +
                 "\nOrder Quantity: " + Tank.maxFuel  +
                 "\n                                                    ";
