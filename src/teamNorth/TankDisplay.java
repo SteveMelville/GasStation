@@ -27,7 +27,7 @@ public class TankDisplay extends JPanel implements Observer {
 
         if(tank.getFuelAmount() > station.getOrderFuelLevel()){
             out.setBackground(Color.green);
-        } else if(tank.getFuelAmount() < station.getOrderFuelLevel() && tank.getFuelAmount() > 0){
+        } else if(tank.getFuelAmount() < station.getOrderFuelLevel() && tank.getFuelAmount() > 15){
             out.setBackground(Color.yellow);
         } else{
             out.setBackground(Color.red);
