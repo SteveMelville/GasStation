@@ -10,7 +10,7 @@ public class StationDisplay extends JFrame{
     private GridBagConstraints c;
 
     public StationDisplay(PumpDisplay [] pumps, TankDisplay [] tanks, MainDisplay mainDisplay, SliderDisplay slider, GridBagConstraints c){
-        super("Text Copier");
+        super("Gas Station Simulator");
 
         this.pumps = pumps;
         this.tanks = tanks;
@@ -32,8 +32,8 @@ public class StationDisplay extends JFrame{
         for(int i = 0; i < tanks.length; i++){
             c.gridx = 4 + i ;
             c.gridy = 0;
-            c.ipadx = 50;
-            c.ipady = 50;
+            c.ipadx = 10;
+            c.ipady = 2;
             c.gridheight = 1;
             c.gridwidth = 1;
             add(tanks[i], c);

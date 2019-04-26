@@ -1,4 +1,5 @@
 package teamNorth;
+import javax.print.attribute.standard.DateTimeAtCreation;
 import java.awt.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
@@ -8,12 +9,13 @@ import static java.lang.Thread.sleep;
 public class Station {
     private SliderDisplay slider;
     boolean working;
+    boolean stationActive;
     double orderFuelLevel;
     static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium, regularGallonsOrdered, premiumGallonsOrdered, dieselGallonsOrdered, regularGallonsDelivered, premiumGallonsDelivered, dieselGallonsDelivered;
     int carsLost, carsArrived, carsServed;
     static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders, outOfRegular, outOfPremium, outOfDiesel, outOfMidgrade;
     static double premiumFuelSold, midgradeFuelSold, regularFuelSold, dieselFuelSold;
-    int size = 9;
+    int size = 9, speed;
     static int CarChance = 10;
     Tank tank85, tank89, diesel;
     Pump [] pumps = new Pump[size];
@@ -37,7 +39,8 @@ public class Station {
         outOfDiesel = outOfPremium = outOfRegular = outOfMidgrade = 0;
         totalFuelSold = 0;
         premiumFuelSold = midgradeFuelSold = regularFuelSold = dieselFuelSold = regularGallonsOrdered = premiumGallonsOrdered = dieselGallonsOrdered = regularGallonsDelivered = premiumGallonsDelivered = dieselGallonsDelivered= 0;
-        working = true;
+        working = stationActive = true;
+        speed = 50;
 
         for(int i = 0; i < 3; i++){
             orderFuel[i] = new Semaphore(0);
@@ -107,70 +110,82 @@ public class Station {
 
             int count = 0, count2 = 0;
             while(working){
+                //IMPORTANT this print statement makes the start/stop button work... don't ask me why
+                System.out.print("");
 
-                for(int i = 0; i < size; i++){
-                    doWork[i].release();
-                }
-                carArrives(Station.CarChance);
-                for(int i = 0; i < size; i++){
-                    workDone[i].acquire();
-                }
-
-                if(tank85.getFuelAmount() < orderFuelLevel && !truck85.fuelOrdered){
-                    System.out.println("85 ordered");
-                    truck85.fuelOrdered = true;
-                    tank85.fuelOrdered = true;
-                    regularGallonsOrdered += Tank.maxFuel;
-                    regularTruckOrders += 1;
-                }
-                if(tank89.getFuelAmount() < orderFuelLevel && !truck89.fuelOrdered){
-                    System.out.println("89 ordered");
-                    truck89.fuelOrdered = true;
-                    tank89.fuelOrdered = true;
-                    premiumGallonsOrdered += Tank.maxFuel;
-                    premiumTruckOrders += 1;
-                }
-                if(diesel.getFuelAmount() < orderFuelLevel && !truckDiesel.fuelOrdered){
-                    System.out.println("Diesel ordered");
-                    truckDiesel.fuelOrdered = true;
-                    diesel.fuelOrdered = true;
-                    dieselGallonsOrdered += Tank.maxFuel;
-                    dieselTruckOrders += 1;
-                }
-
-                if(truck85.fuelOrdered){
-                    truck85.fuelOrder.release();
-                }
-                if(truck89.fuelOrdered){
-                    truck89.fuelOrder.release();
-                }
-                if(truckDiesel.fuelOrdered){
-                    truckDiesel.fuelOrder.release();
-                }
-
-                count++;
-                if(count > 2){
-                    for(int i = 0; i < pumpObservers.length; i++){
-                        pumpObservers[i].update();
+                if(getStationActive()) {
+                    var time = 0;
+                    for (int i = 0; i < size; i++) {
+                        doWork[i].release();
+                        time += 1;
+                        if(time == size)
+                            break;
                     }
-                    for(int i = 0; i < tankObservers.length; i++){
-                        tankObservers[i].update();
+                    carArrives(Station.CarChance);
+                    for (int i = 0; i < size; i++) {
+                        workDone[i].acquire();
                     }
-                    mainStats.update();
+
+                    if (tank85.getFuelAmount() < orderFuelLevel && !truck85.fuelOrdered) {
+                        System.out.println("85 ordered");
+                        truck85.fuelOrdered = true;
+                        tank85.fuelOrdered = true;
+                        regularGallonsOrdered += Tank.maxFuel;
+                        regularTruckOrders += 1;
+                    }
+                    if (tank89.getFuelAmount() < orderFuelLevel && !truck89.fuelOrdered) {
+                        System.out.println("89 ordered");
+                        truck89.fuelOrdered = true;
+                        tank89.fuelOrdered = true;
+                        premiumGallonsOrdered += Tank.maxFuel;
+                        premiumTruckOrders += 1;
+                    }
+                    if (diesel.getFuelAmount() < orderFuelLevel && !truckDiesel.fuelOrdered) {
+                        System.out.println("Diesel ordered");
+                        truckDiesel.fuelOrdered = true;
+                        diesel.fuelOrdered = true;
+                        dieselGallonsOrdered += Tank.maxFuel;
+                        dieselTruckOrders += 1;
+                    }
+
+                    if (truck85.fuelOrdered) {
+                        truck85.fuelOrder.release();
+                    }
+                    if (truck89.fuelOrdered) {
+                        truck89.fuelOrder.release();
+                    }
+                    if (truckDiesel.fuelOrdered) {
+                        truckDiesel.fuelOrder.release();
+                    }
+
+                    count++;
+                    if (count > 2) {
+                        for (int i = 0; i < pumpObservers.length; i++) {
+                            pumpObservers[i].update();
+                        }
+                        for (int i = 0; i < tankObservers.length; i++) {
+                            tankObservers[i].update();
+                        }
+                        mainStats.update();
 
 
-                    count = 0;
-                    count2++;
+                        count = 0;
+                        count2++;
+                    }
+                    if (count2 > 10) {
+                        count2 = 0;
+                    }
+                    sleep(speed);
                 }
-                if(count2 > 10){
-                    count2 = 0;
-                }
-                sleep(50);
             }
         } catch(Exception e){
             return false;
         }
         return true;
+    }
+
+    public boolean getStationActive() {
+        return stationActive;
     }
 
     public void carArrives(int chance) {
@@ -219,6 +234,9 @@ public class Station {
         }
     }
 
+    public void setStationActive(boolean status){
+        stationActive = status;
+    }
     public synchronized static void updateTotalFuelSold(double amount){
         totalFuelSold += amount;
     }
@@ -241,6 +259,8 @@ public class Station {
         return lostFuel;
     }
 
+    public void setSimRunSpeed(int _speed){ speed = _speed; }
+
     public static void setCarChance(int _carChance){
         CarChance = _carChance;
     }
@@ -252,5 +272,9 @@ public class Station {
         for(int i = 0; i < size; i++){
             pumps[i].setPumpSpeed(newPumpSpeed);
         }
+    }
+
+    public double getOrderFuelLevel(){
+        return orderFuelLevel;
     }
 }
