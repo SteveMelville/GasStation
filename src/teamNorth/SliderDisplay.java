@@ -106,7 +106,7 @@ public class SliderDisplay extends JPanel {
         slider4.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setPaintLabels(true);
-        status = new JLabel("Run speed (milliseconds per cycle):", JLabel.CENTER);
+        status = new JLabel("Run speed:", JLabel.CENTER);
 
 // Add positions label in the slider
         Hashtable position2 = new Hashtable();
