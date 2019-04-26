@@ -157,7 +157,7 @@ public class Station {
                     }
 
                     count++;
-                    if (count > 2) {
+                    if (count > 1) {
                         for (int i = 0; i < pumpObservers.length; i++) {
                             pumpObservers[i].update();
                         }
