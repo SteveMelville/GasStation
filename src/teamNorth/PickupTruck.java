@@ -8,6 +8,8 @@ public class PickupTruck extends Car{
         requestedFuel = random.nextInt((int)getMaxTankSize());
         fuelType = "87";
         name = "TRUCK";
+        image = " \nL___/T\\\n" +
+                " o-----o";
     }
     public String getFuelType(){
         return fuelType;
