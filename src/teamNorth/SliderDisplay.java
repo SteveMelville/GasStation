@@ -100,24 +100,23 @@ public class SliderDisplay extends JPanel {
 
 // Slider for simulation run speed
 // Set the label to be drawn
-        slider4 = new JSlider(25, 325, 50);
+        slider4 = new JSlider(1, 100, 14);
         slider4.setPreferredSize(new Dimension(150, 30));
-        slider4.setMajorTickSpacing(75);
-        slider4.setMinorTickSpacing(25);
+        slider4.setMajorTickSpacing(50);
+        slider4.setMinorTickSpacing(10);
         slider4.setPaintTicks(true);
         slider4.setPaintLabels(true);
         status = new JLabel("Run speed (milliseconds per cycle):", JLabel.CENTER);
 
 // Add positions label in the slider
-        position = new Hashtable();
-        position.put(25, new JLabel("25"));
-        position.put(125, new JLabel("125"));
-        position.put(225, new JLabel("225"));
-        position.put(325, new JLabel("325"));
-        slider4.addChangeListener(event -> {
-            int value = slider4.getValue();
-            station.setSimRunSpeed(value);
-        });
+        Hashtable position2 = new Hashtable();
+        position2.put(1, new JLabel("100"));
+        position2.put(25, new JLabel("75"));
+        position2.put(50, new JLabel("50"));
+        position2.put(75, new JLabel("25"));
+        position2.put(100, new JLabel("1"));
+        slider4.addChangeListener(event -> station.setSimRunSpeed(slider4.getValue()*4));
+        slider4.setLabelTable(position2);
         add(status);
         add(slider4);
 
