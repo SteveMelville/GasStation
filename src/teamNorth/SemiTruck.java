@@ -6,6 +6,9 @@ public class SemiTruck extends Car {
         requestedFuel = random.nextInt((int)getMaxTankSize());
         fuelType = "diesel";
         name = "Semi-Truck";
+        image = " _________\n" +
+                "|_________|_|T_\n" +
+                "OO                OO O ";
     }
 
 }

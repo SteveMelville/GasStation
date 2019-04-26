@@ -27,7 +27,8 @@ public class PumpDisplay  extends JPanel implements Observer {
                 "\nPump Stats: \n -Regular: " + String.format("%.2f", pump.getGasRegularPumped())+
                 "\n -Midgrade: " + String.format("%.2f", pump.getGasMidgradePumped()) +
                 "\n -Premium: " + String.format("%.2f", pump.getGasPremiumPumped()) +
-                "\n -Diesel: " + String.format("%.2f", pump.getDieselPumped());
+                "\n -Diesel: " + String.format("%.2f", pump.getDieselPumped()) +
+                "\n                                                    ";
 
         System.out.println(oof);
         setOutput(oof);

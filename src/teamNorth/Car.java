@@ -8,11 +8,14 @@ public class Car implements ICar{
     String fuelType;
     String name;
     Random random = new Random();
+    String image;
 
     Car(){
         requestedFuel = random.nextInt((int)MaxTankSize);
         fuelType = "85";
         name = "Car!";
+        image = "\n _/T\\_\n" +
+                " o---o";
     }
 
     public double getRequestedFuel() {
@@ -37,6 +40,11 @@ public class Car implements ICar{
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getImage() {
+        return image;
     }
 
 

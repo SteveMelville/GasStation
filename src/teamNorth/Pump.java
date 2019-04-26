@@ -130,9 +130,9 @@ public class Pump extends Thread {
 
     public String getCarData(){
         if(car != null)
-            return "Car:\n -Name: " + car.getName() + "\n -Fuel Type: " + car.getFuelType() + "\n -Amount Requested: " + car.getRequestedFuel();
+            return car.getImage() + "\nCar:\n -Name: " + car.getName() + "\n -Fuel Type: " + car.getFuelType() + "\n -Amount Requested: " + car.getRequestedFuel();
         else
-            return "Car:\n -Name: Oof \n -Fuel Type: Yeet \n -Amount Requested: no";
+            return "\n\n\nCar:\n -Name: Oof \n -Fuel Type: Yeet \n -Amount Requested: no";
     }
 
 
