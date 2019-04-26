@@ -5,6 +5,7 @@ public class Tank {
     static Tank tank89;
     static Tank tankDiesel;
     double fuelAmount;
+    static double orderFuelLevel = 200;
     static double fuelExcess = 0;
     static double maxFuel = 300.0;
     boolean fuelOrdered;

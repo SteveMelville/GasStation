@@ -21,7 +21,7 @@ public class FuelTruck extends Thread {
                     fuelOrder.acquire();
                 }
                 System.out.println("Truck arrived! " + tank.name);
-                tank.refuelTank(tank.maxFuel);
+                tank.refuelTank((Tank.maxFuel - Tank.orderFuelLevel) + 50);
                 fuelOrdered = false;
                 tank.fuelOrdered = false;
             }

@@ -10,7 +10,6 @@ public class Station {
     private SliderDisplay slider;
     boolean working;
     boolean stationActive;
-    double orderFuelLevel;
     static double fuelExcessRegular, fuelExcessDiesel, fuelExcessPremium, regularGallonsOrdered, premiumGallonsOrdered, dieselGallonsOrdered, regularGallonsDelivered, premiumGallonsDelivered, dieselGallonsDelivered;
     int carsLost, carsArrived, carsServed;
     static int regularTruckOrders, premiumTruckOrders, dieselTruckOrders, outOfRegular, outOfPremium, outOfDiesel, outOfMidgrade;
@@ -31,7 +30,6 @@ public class Station {
         tank85 = Tank.getTank("85");
         tank89 = Tank.getTank("89");
         diesel = Tank.getTank("diesel");
-        orderFuelLevel = /*Tank.getMaxFuel() / 2*/ 200;
         lostFuel = 0;
         carsLost = carsArrived = carsServed = 0;
         regularTruckOrders = premiumTruckOrders = dieselTruckOrders = 0;
@@ -126,25 +124,25 @@ public class Station {
                         workDone[i].acquire();
                     }
 
-                    if (tank85.getFuelAmount() < orderFuelLevel && !truck85.fuelOrdered) {
+                    if (tank85.getFuelAmount() < Tank.orderFuelLevel && !truck85.fuelOrdered) {
                         System.out.println("85 ordered");
                         truck85.fuelOrdered = true;
                         tank85.fuelOrdered = true;
-                        regularGallonsOrdered += Tank.maxFuel;
+                        regularGallonsOrdered += (Tank.maxFuel - Tank.orderFuelLevel) + 50;
                         regularTruckOrders += 1;
                     }
-                    if (tank89.getFuelAmount() < orderFuelLevel && !truck89.fuelOrdered) {
+                    if (tank89.getFuelAmount() < Tank.orderFuelLevel && !truck89.fuelOrdered) {
                         System.out.println("89 ordered");
                         truck89.fuelOrdered = true;
                         tank89.fuelOrdered = true;
-                        premiumGallonsOrdered += Tank.maxFuel;
+                        premiumGallonsOrdered += (Tank.maxFuel - Tank.orderFuelLevel) + 50;
                         premiumTruckOrders += 1;
                     }
-                    if (diesel.getFuelAmount() < orderFuelLevel && !truckDiesel.fuelOrdered) {
+                    if (diesel.getFuelAmount() < Tank.orderFuelLevel && !truckDiesel.fuelOrdered) {
                         System.out.println("Diesel ordered");
                         truckDiesel.fuelOrdered = true;
                         diesel.fuelOrdered = true;
-                        dieselGallonsOrdered += Tank.maxFuel;
+                        dieselGallonsOrdered += (Tank.maxFuel - Tank.orderFuelLevel) + 50;
                         dieselTruckOrders += 1;
                     }
 
@@ -272,9 +270,5 @@ public class Station {
         for(int i = 0; i < size; i++){
             pumps[i].setPumpSpeed(newPumpSpeed);
         }
-    }
-
-    public double getOrderFuelLevel(){
-        return orderFuelLevel;
     }
 }
