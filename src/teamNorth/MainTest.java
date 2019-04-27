@@ -1,4 +1,4 @@
-/*package teamNorth;
+package teamNorth;
 
 
 import org.junit.jupiter.api.Test;
@@ -47,7 +47,8 @@ class MainTest {
         tank.refuelTank(tank.getMaxFuel()-tank.fuelAmount);
         tank.fuelRequest(tank.getMaxFuel()/2);
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
-
+        tank.refuelTank(tank.getMaxFuel() - tank.fuelAmount);
+        
         //amount should update
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel());
     }
@@ -118,7 +119,4 @@ class MainTest {
         assertEquals(63.0, car2.getMaxTankSize());
         assertNotEquals(30.0, car.getMaxTankSize());
     }
-
 }
-
-*/
