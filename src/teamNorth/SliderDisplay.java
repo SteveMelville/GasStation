@@ -1,15 +1,9 @@
 package teamNorth;
-
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
 public class SliderDisplay extends JPanel {
-
     JSlider slider;
     JSlider slider2;
     JSlider slider3;
@@ -23,8 +17,8 @@ public class SliderDisplay extends JPanel {
         this.station = station;
         setLayout(new GridLayout(6,1));
 
-// Slider for changeable car arrival chance
-// Set the label to be drawn
+        // Slider for changeable car arrival chance
+        // Set the label to be drawn
         slider = new JSlider(1,100,10);
         slider.setPreferredSize(new Dimension(150,50));
         slider.setMajorTickSpacing(50);
@@ -33,16 +27,16 @@ public class SliderDisplay extends JPanel {
         slider.setPaintLabels(true);
         JLabel status = new JLabel("Car Arrival Average Chance", JLabel.CENTER);
 
-// Add positions label in the slider
+        // Add positions label in the slider
         Hashtable position = new Hashtable();
-        position.put(1, new JLabel("100"));
-        position.put(25, new JLabel("75"));
-        position.put(50, new JLabel("50"));
-        position.put(75, new JLabel("25"));
-        position.put(100, new JLabel("1"));
+        position.put(1, new JLabel("100%"));
+        position.put(25, new JLabel("75%"));
+        position.put(50, new JLabel("50%"));
+        position.put(75, new JLabel("25%"));
+        position.put(100, new JLabel("1%"));
 
-// Slider for changeable delivery time
-// Set the label to be drawn
+        // Slider for changeable delivery time
+        // Set the label to be drawn
         slider.setLabelTable(position);
         slider.addChangeListener(event -> {
             int value = slider.getValue();
@@ -59,7 +53,7 @@ public class SliderDisplay extends JPanel {
         slider2.setPaintLabels(true);
         status = new JLabel("Delivery Time %", JLabel.CENTER);
 
-// Add positions label in the slider
+        // Add positions label in the slider
         position = new Hashtable();
         position.put(0, new JLabel("0"));
         position.put(25, new JLabel("25"));
@@ -73,8 +67,8 @@ public class SliderDisplay extends JPanel {
         add(status);
         add(slider2);
 
-// Slider for changeable fuel pumping rate
-// Set the label to be drawn
+        // Slider for changeable fuel pumping rate
+        // Set the label to be drawn
         slider3 = new JSlider(0, 100, 10);
         slider3.setPreferredSize(new Dimension(150, 30));
         slider3.setMajorTickSpacing(20);
@@ -83,7 +77,7 @@ public class SliderDisplay extends JPanel {
         slider3.setPaintLabels(true);
         status = new JLabel("Pump speed %", JLabel.CENTER);
 
-// Add positions label in the slider
+        // Add positions label in the slider
         position = new Hashtable();
         position.put(0 , new JLabel("0"));
         position.put(20, new JLabel("2"));
@@ -98,8 +92,8 @@ public class SliderDisplay extends JPanel {
         add(status);
         add(slider3);
 
-// Slider for simulation run speed
-// Set the label to be drawn
+        // Slider for simulation run speed
+        // Set the label to be drawn
         slider4 = new JSlider(1, 100, 14);
         slider4.setPreferredSize(new Dimension(150, 30));
         slider4.setMajorTickSpacing(50);
@@ -108,7 +102,7 @@ public class SliderDisplay extends JPanel {
         slider4.setPaintLabels(true);
         status = new JLabel("Run speed:", JLabel.CENTER);
 
-// Add positions label in the slider
+        // Add positions label in the slider
         Hashtable position2 = new Hashtable();
         position2.put(1, new JLabel("100"));
         position2.put(25, new JLabel("75"));
@@ -120,6 +114,7 @@ public class SliderDisplay extends JPanel {
         add(status);
         add(slider4);
 
+        //Create the Play/Pause button, adds the action listener, and then adds it to the Display
         button = new JButton("Play/Pause");
         button.setBounds(50,100,95,30);
         button.addActionListener(e -> station.setStationActive(!station.getStationActive()));

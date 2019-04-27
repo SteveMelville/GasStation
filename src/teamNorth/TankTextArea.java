@@ -1,5 +1,4 @@
 package teamNorth;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,6 +6,7 @@ public class TankTextArea extends JTextArea {
     int status;
     Color color;
     public TankTextArea(String s) {
+        //Initialize the class variables
         super(s);
         status = 0;
         color = Color.green;

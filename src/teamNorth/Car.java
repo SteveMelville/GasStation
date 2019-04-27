@@ -1,5 +1,4 @@
 package teamNorth;
-
 import java.util.Random;
 
 public class Car implements ICar{
@@ -11,6 +10,7 @@ public class Car implements ICar{
     String image;
 
     Car(){
+        //Initializes the class variables
         requestedFuel = random.nextInt((int)MaxTankSize);
         fuelType = "85";
         name = "Car!";
@@ -18,6 +18,8 @@ public class Car implements ICar{
                 " o---o";
     }
 
+
+    //Getters and setters for the class variables
     public double getRequestedFuel() {
         return requestedFuel;
     }
@@ -33,9 +35,7 @@ public class Car implements ICar{
     }
 
     @Override
-    public String getFuelType() {
-        return fuelType;
-    }
+    public String getFuelType() { return fuelType; }
 
     @Override
     public String getName() {
@@ -46,6 +46,5 @@ public class Car implements ICar{
     public String getImage() {
         return image;
     }
-
 
 }

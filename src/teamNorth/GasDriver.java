@@ -5,10 +5,12 @@ public class GasDriver {
     Boolean endOfTheWorld;
 
     GasDriver(){
+        //Initiaizes the class variables
         station = new Station();
         endOfTheWorld = false;
     }
 
+    //Runs the simulation
     Boolean run(){
         try {
             station.runStation();

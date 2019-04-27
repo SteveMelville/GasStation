@@ -1,5 +1,4 @@
 package teamNorth;
-
 import java.util.concurrent.Semaphore;
 
 public class FuelTruck extends Thread {

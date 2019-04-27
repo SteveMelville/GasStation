@@ -1,5 +1,4 @@
 package teamNorth;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,6 +8,7 @@ public class MainDisplay extends JPanel implements Observer {
     Station station;
 
     MainDisplay(GridBagConstraints c, Station station){
+        //Initializes the class variables
         this.c = c;
         this.station = station;
         setLayout(new GridBagLayout());
@@ -19,7 +19,10 @@ public class MainDisplay extends JPanel implements Observer {
 
     @Override
     public void update() {
+        //Updates total cars lost
         int totalLost = station.carsLost + station.outOfDiesel + station.outOfPremium + station.outOfMidgrade + station.outOfRegular;
+
+        //Updates the string to write to the Text area
         String oof = "Tank 85: " + String.format("%.2f", station.tank85.getFuelAmount()) +
                 "\nTank 89: " + String.format("%.2f", station.tank89.getFuelAmount()) +
                 "\nTank Diesel: " + String.format("%.2f", station.diesel.getFuelAmount()) +
@@ -53,11 +56,14 @@ public class MainDisplay extends JPanel implements Observer {
                 "\n   -- Premium: " + String.format("%.2f", station.fuelExcessPremium) +
                 "\n   -- Diesel: " + String.format("%.2f", station.fuelExcessDiesel) +
                 "\n                                                                ";
+        //Prints the string and calls the setOutput function
         System.out.println(oof);
         setOutput(oof);
     }
 
+    //setter and getter for the output text area
     public void setOutput(String input){
+        //puts the given string into the text area
         out.setText(input);
     }
 

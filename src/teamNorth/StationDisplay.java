@@ -1,5 +1,4 @@
 package teamNorth;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,13 +10,11 @@ public class StationDisplay extends JFrame{
 
     public StationDisplay(PumpDisplay [] pumps, TankDisplay [] tanks, MainDisplay mainDisplay, SliderDisplay slider, GridBagConstraints c){
         super("Gas Station Simulator");
-
         this.pumps = pumps;
         this.tanks = tanks;
         this.mainDisplay = mainDisplay;
         //initialize
         setLayout(new GridBagLayout());
-
         this.c = c;
 
         for(int i = 0; i < pumps.length; i++){
@@ -38,7 +35,7 @@ public class StationDisplay extends JFrame{
             c.gridwidth = 1;
             add(tanks[i], c);
         }
-        //Slider Pannel
+        //Slider Panel
         c.gridx=5;
         c.gridy=1;
         c.ipadx=50;
