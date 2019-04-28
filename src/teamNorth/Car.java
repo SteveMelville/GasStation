@@ -12,12 +12,14 @@ public class Car implements ICar{
     Car(){
         //Initializes the class variables
         requestedFuel = random.nextInt((int)MaxTankSize);
+        if(requestedFuel == 0){
+            requestedFuel = 1;
+        }
         fuelType = "85";
         name = "Car!";
         image = "\n _/T\\_\n" +
                 " o---o";
     }
-
 
     //Getters and setters for the class variables
     public double getRequestedFuel() {
@@ -46,5 +48,4 @@ public class Car implements ICar{
     public String getImage() {
         return image;
     }
-
 }

@@ -22,7 +22,7 @@ public class TankTextArea extends JTextArea {
     }
 
     public void setStatus(double maximum, double current, Color color){
-        status = (int) ((int) this.getHeight()/(current/maximum));
+        status = (int) (this.getHeight()/(current/maximum));
         this.color = color;
     }
 }
