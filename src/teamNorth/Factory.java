@@ -1,6 +1,7 @@
 package teamNorth;
 
 public class Factory {
+    //Creates a car based on the enumerated CarType passed into the Factory
     static Car carCreate(CarType type) {
         if (type == CarType.Car)
             return new Car();

@@ -1,10 +1,10 @@
 package teamNorth;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class PumpTextArea extends JTextArea {
     int status;
+
     public PumpTextArea(String s) {
         super(s);
         status = 0;
@@ -20,6 +20,6 @@ public class PumpTextArea extends JTextArea {
     }
 
     public void setStatus(double requested, double pumped){
-        status = (int) ((int) this.getHeight()*(pumped/requested));
+        status = (int) (this.getHeight()*(pumped/requested));
     }
 }

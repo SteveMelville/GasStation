@@ -1,13 +1,8 @@
-/*package teamNorth;
-
-
+package teamNorth;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-
-
 
     @Test
     void onlyProperTanksCreatable(){
@@ -47,6 +42,7 @@ class MainTest {
         tank.refuelTank(tank.getMaxFuel()-tank.fuelAmount);
         tank.fuelRequest(tank.getMaxFuel()/2);
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel()/2);
+        tank.refuelTank(tank.getMaxFuel() - tank.fuelAmount);
 
         //amount should update
         assertEquals(tank.getFuelAmount(), tank.getMaxFuel());
@@ -82,7 +78,6 @@ class MainTest {
         assertEquals(tank.getMaxFuel(), tank.fuelRequest(tank.getMaxFuel()));
 
         tank.refuelTank(20);
-
         assertEquals(20, tank.fuelRequest(30));
     }
 
@@ -110,7 +105,6 @@ class MainTest {
     void CarMaxTankSize(){
         Car car = new PickupTruck();
 
-
         assertEquals(30.0, car.getMaxTankSize());
 
         Car car2 = new SemiTruck();
@@ -118,7 +112,4 @@ class MainTest {
         assertEquals(63.0, car2.getMaxTankSize());
         assertNotEquals(30.0, car.getMaxTankSize());
     }
-
 }
-
-*/
